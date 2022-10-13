@@ -11,7 +11,7 @@ googleAnalytics         = "UA-128762731-1"
 [params]
     dateform            = "Mon Jan 02, 2006"
     dateformfull        = "Mon Jan 2 2006 15:04:05 EST"
-    email               = "ger.spencer3@gmail.com"
+    email               = "contact@geraldhspencer.com"
     favicon             = "g3.ico"
     footerText          = "www.geraldhspencer.com"
     github_url          = "https://github.com/Geethree"
@@ -20,7 +20,7 @@ googleAnalytics         = "UA-128762731-1"
 
 [[params.mainMenu]]
     link = "/about"
-    text = "who is gerald?"
+    text = "who is Gerald?"
 
 [[params.mainMenu]]
     link = "/works"

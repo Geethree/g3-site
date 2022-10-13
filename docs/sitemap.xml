@@ -23,11 +23,6 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-08-30T12:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
     <lastmod>2019-08-30T12:00:00-07:00</lastmod>
   </url>
@@ -118,6 +113,11 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2018-02-13T13:42:49-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/works/temple_2017/post/</loc>
     <lastmod>2017-08-30T12:00:00-07:00</lastmod>
   </url>
@@ -170,11 +170,6 @@
   <url>
     <loc>/works/dreamland/post/</loc>
     <lastmod>2015-08-30T12:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/resume/gspencer_eng/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

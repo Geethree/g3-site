@@ -3,7 +3,7 @@ Gerald Spencer
 ----
 
 > Multi-dimensional engineering leader passionate about:\
-> Automation, CI/CD, Community Building, Devops, Kubernetes and Networking\
+> Automation, CI/CD, Community Building, Devops, Kubernetes and GoNetworking\
 > <ger.spencer3@gmail.com> • +1-510-838-2327
 
 ----
@@ -11,7 +11,6 @@ Gerald Spencer
 Education
 ---------
 
-2010-2014
 :   **BSc, Mechanical Engineering W/ USCG License**
 
     *California Maritime Academy (Vallejo, CA)*
@@ -21,8 +20,29 @@ Education
 
 Experience
 ----------
+2022 - Present
+:   **[Cruise] - Senior Site Reliability Enginner II**
 
-2019 - Present
+	Scaling the Fleet Product team's services vertically, horizontally and across regions to support Cruise's commericalization plan as autonomous vehicle fleets are rolled out to new geographic regions.
+
+2021 - 2022
+:   **[Skydio] - Engineering Manager - Infrastructure/Site Reliability**
+
+	Leading a small team architecting, designing and operating the infrastructure and processes required to support Skydio's enterprise autonomous drone platform and the 150 engineers working on the platform.
+
+    * Architected and implemented a complete revamp of Skydio's AWS deployment in support of SOC I/II
+       * Transitioned from one legacy account to an AWS organization with full SAML support for users
+       * Implemented a scalable transit system to ensure secure private communication between all of Skydio's networks
+    * Implemented an Incident Management process and on-call systems for external and internal customers
+    * Championed the introduction of Kubernetes into the development lifecycle
+       * Developed a Bazel & jsonnet based manifest generation library
+    * Uplifted legacy deployments of external services to automated highly available container based deployments
+       * Reduced time to deploy from 2 hours to 15 minutes
+       * Automated deployments with instantaneous rollbacks
+    * Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers
+    * Introduced a Continuous Deployment platform leveraged by every software team at Skydio to self service repeatable / reliable deployments
+
+2019 - 2021
 :   **[Strateos] - Director of Infrastructure**
 
 	Designing, developing, implementing and operating the robotic cloud drug discovery labs of the future.
@@ -56,42 +76,6 @@ Experience
       * Acquire publically addressable /24 block of IPv4 space
       * Owned and operated BGP routing systems with two ISPs and AWS to route imagery into S3
 
-2015 - Present
-:    **[Flux Foundation] - Lead technologist**
-    
-    A small arts collective that builds large art, which is shown at Burning man and numerous festivals around the country
-
-10/2018 - 9/2019
-:   **[The Folly] - Electrical and Lighting lead**
-
-	* Development of structure's power distribution and electrical layout
-	* Exterior and interior lighting design
-
-1/2018 - 9/2018
-:   **[Temple Galaxia] - Project Manager | Lighting lead**
-
-	* Engineering project management between 3 timezones
-	* Oversaw a crew of 7 individuals from electrical engineers to artists
-	* Development of structures electrical schematic to CA Title 24 standards
-	* Lighting design: Custom PCB circuit boards, manufacturing and layout
-	* Custom software architecture and compute hardware to control 1200 addressable incandescents light bulbs
-
-1/2016 - 10/2016
-:   **[Black Rock Lighthouse Service] - Lighting lead**
-
-	* Oversaw an electrical team of 3 individuals
-	* Development of structures electrical schematic to CA Title 24 standards
-	* Fire design: Custom fire effects protocol via GRPC, Linux and network installations
-	* Lighting design: Custom protocol for DMX over Ethernet to wirelessly modulate Color Kinetix 
-
-4/2011 - 4/2013
-:   **[Taylor Collaboration] - Engineering Intern:**
-
-	Orthopedics bio-mechanical testing facility working with the medical industry to redesign and improve total knee and hip replacements
-
-	* Validated the improvement of a new method for a tibial tubercle osteotomy
-	* Designed a test setup to simulate humans striking their hip during falling in normal gait 
-
 Technical Experience
 --------------------
 
@@ -109,12 +93,10 @@ Software/System Design
     * **Edge Computing**: Akri, Balena Cloud, ioFog, AWS Greengrass, AWS IOT Core
     * **Identity Management**: Active Directory, Okta
     * **IT/Networking**: Managed 3Scan's AS, BGP peering with multiple ISPs and AWS. Cisco/JunoOS you name it!
-    * **Languages**: Bash, C, C++, Groovy, Java, Javascript, .Net, Node, Python, Scala, Typescript
-    * **Observability**: ELK, Grafana, Graphite, Fluentd, Fluent-bit, Prometheus, Sumologic, Splunk
+    * **Languages**: Bash, Python, Java, Go, Javascript, .Net, Node, Python, Scala, Typescript
+    * **Observability**: ELK, Grafana, Prometheus, Sumologic, Splunk
     * **Operating Systems**: At home in any flavor of linux, MacOS and windows
     * **Service Mesh**: Consul, Istio, LinkerD
-    * **Testing**: Junit, PyTest, ScalaTest
-    * **Version Control**: Git, Github, Gitlab, Phabricator
 
 Engineering Management
 :   Engineering is fundamentally a creative task, and the job of a strong Leader is to maximize people's ability to get the thing they want to do done.
@@ -127,6 +109,7 @@ Engineering Management
 
 [3Scan]: http://www.3scan.com
 [Black Rock Lighthouse Service]: https://journal.burningman.org/2016/08/burning-man-arts/brc-art/black-rock-lighthouse-service
+[Cruise]: https://www.getcruise.com
 [Flux Foundation]: http://www.fluxfoundation.org
 [Github]: https://github.com/Geethree
 [Linkedin]: https://www.linkedin.com/in/gerald-spencer-bb2617123/
@@ -135,9 +118,10 @@ Engineering Management
 [Temple Galaxia]: http://www.templegalaxia.org
 [The Folly]: https://www.thefollybrc.com/
 [Strateos]: http://www.strateos.com
+[Skydio]: https://www.skydio.com
 
 ----
 
 > <ger.spencer3@gmail.com> • +1-510-838-2327 \
-> Berkeley, California, USA \
+> Oakland, California, USA \
 > [Github] • [Linkedin]

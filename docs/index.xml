@@ -6,7 +6,7 @@
     <description>Recent content on Gerald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 13 Feb 2018 13:42:49 -0500</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -27,7 +27,7 @@
       
       <guid>/blahg/website_makefile/</guid>
       <description>Computers and software are wonderful things, instead of remembering to:
- Ensure all node packages are installed and/or up-to-date Compile css bits Generate the resume: markdown -&amp;gt; laTex -&amp;gt; laTex -&amp;gt; PDF Compile the static hugo site Add all of the changed files to the git repo Insert a helpful commit message to remember the work that was done Push the changes to master  In particular, I always seem to forget step 5 and end up with missing files since everything wasn&#39;t appropriately staged before the commit.</description>
+ Ensure all node packages are installed and/or up-to-date Compile css bits Generate the resume: markdown -&amp;gt; laTex -&amp;gt; laTex -&amp;gt; PDF Compile the static hugo site Add all of the changed files to the git repo Insert a helpful commit message to remember the work that was done Push the changes to master  In particular, I always seem to forget step 5 and end up with missing files since everything wasn&amp;rsquo;t appropriately staged before the commit.</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Sat, 03 Nov 2018 12:18:59 -0700</pubDate>
       
       <guid>/blahg/markdown_resume/</guid>
-      <description>I&#39;ll be honest, I hate maintaiting my resume and CV. There is something about opening your editor of choice fiddling with parameters, saving as a PDF, naming the file and uploading it somewhere that requires too many steps. It sure would be nice if we could use MarkDown to generate a PDF automagically whenever I press a new version of this website.
+      <description>I&amp;rsquo;ll be honest, I hate maintaiting my resume and CV. There is something about opening your editor of choice fiddling with parameters, saving as a PDF, naming the file and uploading it somewhere that requires too many steps. It sure would be nice if we could use MarkDown to generate a PDF automagically whenever I press a new version of this website.
 Pandoc and ConText to the rescue!
 Markdown -&amp;gt; PDF  Pandoc is used to convert the Markdown file to a latex file ConText is then used to to convert the latex file to a pdf  Markdown -&amp;gt; html  Pandoc and a css style sheet can convert the resume markdown file to an html page  </description>
     </item>
@@ -75,8 +75,8 @@ Visions from the dust </description>
       <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
       
       <guid>/about/</guid>
-      <description>Hi, I&#39;m Gerald!
-Professionally, I&#39;m an engineering leader who is passionate about automation, connected devices, culture and how to expand my own impact by empowering those that I work with.
+      <description>Hi, I&amp;rsquo;m Gerald!
+Professionally, I&amp;rsquo;m an engineering leader who is passionate about automation, connected devices, culture and how to expand my own impact by empowering those that I work with.
 The past decade I have been spent flexing my technical leadership skills at 3Scan, by leading a small interdisciplinary team ranging from hardware and software engineers to biologists in building out a digital pathology production line. Our work revolved around combining automation, robotics and machine learning to extract spatial data from biological tissue samples.</description>
     </item>
     
@@ -104,7 +104,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Wed, 29 Jun 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/fish_bug/post/</guid>
-      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&#39;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&#39;s fiberglass head.</description>
+      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
     </item>
     
     <item>
@@ -113,7 +113,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Thu, 19 May 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/dreamscape/post/</guid>
-      <description>Involvement  Dreamland&#39;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
+      <description>Involvement  Dreamland&amp;rsquo;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
     </item>
     
     <item>
@@ -122,7 +122,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Tue, 19 Apr 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/lighthouse_affair/post/</guid>
-      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring   Lighting Design  Philip&#39;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.   Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult.</description>
+      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring   Lighting Design  Philip&amp;rsquo;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.   Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult.</description>
     </item>
     
     <item>
@@ -132,16 +132,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       
       <guid>/works/dreamland/post/</guid>
       <description>A whimsical experience of vivid colors, dazzling light and flames transport participants to the world of spectacle and the carnivalesque. Photo: Duncan Rawlinson
-Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&#39;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC. Carousel position was captured by creating a custom rotary encoder that consisted of a square tooth gear with two hall-effect sensors 90deg out of phase with one another.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/resume/gspencer_eng/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/resume/gspencer_eng/</guid>
-      <description>gspencer_eng code{white-space: pre-wrap;} span.smallcaps{font-variant: small-caps;} span.underline{text-decoration: underline;} div.column{display: inline-block; vertical-align: top; width: 50%;}    /* Whole document */ body { /*font-family: &#34;didact Gothic&#34;, sans-serif;*/ font-family: &#34;Helvetica Neue&#34;, Helvetica, Arial, sans-serif; max-width: 800px; margin: auto; background: #FFFFFF; padding: 10px 10px 10px 10px; } /* Title of the resume */ h1 { font-size: 55px; color: #757575; text-align:center; margin-bottom:15px; } /* Titles of categories */ h2 { /* This is called &#34;</description>
+Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&amp;rsquo;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC. Carousel position was captured by creating a custom rotary encoder that consisted of a square tooth gear with two hall-effect sensors 90deg out of phase with one another.</description>
     </item>
     
   </channel>
