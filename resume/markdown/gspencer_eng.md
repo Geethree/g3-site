@@ -11,11 +11,10 @@ Gerald Spencer
 Education
 ---------
 
-:   **BSc, Mechanical Engineering W/ USCG License**
-
-    *California Maritime Academy (Vallejo, CA)*
-
-    *Licensed United State Coast Guard 3rd Assistant Engineer*
+**BSc, Mechanical Engineering W/ USCG License**
+   
+   - *California Maritime Academy (Vallejo, CA)*
+   - *Licensed United State Coast Guard 3rd Assistant Engineer*
 
 
 Experience
