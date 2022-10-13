@@ -3,8 +3,8 @@ Gerald Spencer
 ----
 
 > Multi-dimensional engineering leader passionate about:\
-> Automation, CI/CD, Community Building, Devops, Kubernetes and GoNetworking\
-> <ger.spencer3@gmail.com> • +1-510-838-2327
+> Automation, CI/CD, Community Building, Devops, Kubernetes and Networking\
+> <contact@geraldhspencer.com> • +1-510-838-2327
 
 ----
 
