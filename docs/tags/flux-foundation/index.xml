@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flux Foundation on Gerald</title>
@@ -17,7 +17,8 @@
       <pubDate>Wed, 29 Jun 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/fish_bug/post/</guid>
-      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
+      <description>Half fish, half bug, fiberglass and a whole lot of steel 
+Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.  Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
     </item>
     
     <item>
@@ -26,7 +27,7 @@
       <pubDate>Thu, 19 May 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/dreamscape/post/</guid>
-      <description>Involvement  Dreamland&amp;rsquo;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
+      <description>  Involvement  Dreamland&amp;rsquo;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
     </item>
     
     <item>
@@ -36,7 +37,8 @@
       
       <guid>/works/dreamland/post/</guid>
       <description>A whimsical experience of vivid colors, dazzling light and flames transport participants to the world of spectacle and the carnivalesque. Photo: Duncan Rawlinson
-Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&amp;rsquo;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC. Carousel position was captured by creating a custom rotary encoder that consisted of a square tooth gear with two hall-effect sensors 90deg out of phase with one another.</description>
+ from Flavio Lemelle on Vimeo.
+ Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&amp;rsquo;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC.</description>
     </item>
     
   </channel>

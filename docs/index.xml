@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gerald</title>
@@ -6,7 +6,7 @@
     <description>Recent content on Gerald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Feb 2018 13:42:49 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -36,7 +36,7 @@
       <pubDate>Sat, 03 Nov 2018 12:18:59 -0700</pubDate>
       
       <guid>/blahg/markdown_resume/</guid>
-      <description>I&amp;rsquo;ll be honest, I hate maintaiting my resume and CV. There is something about opening your editor of choice fiddling with parameters, saving as a PDF, naming the file and uploading it somewhere that requires too many steps. It sure would be nice if we could use MarkDown to generate a PDF automagically whenever I press a new version of this website.
+      <description> I&amp;rsquo;ll be honest, I hate maintaiting my resume and CV. There is something about opening your editor of choice fiddling with parameters, saving as a PDF, naming the file and uploading it somewhere that requires too many steps. It sure would be nice if we could use MarkDown to generate a PDF automagically whenever I press a new version of this website.
 Pandoc and ConText to the rescue!
 Markdown -&amp;gt; PDF  Pandoc is used to convert the Markdown file to a latex file ConText is then used to to convert the latex file to a pdf  Markdown -&amp;gt; html  Pandoc and a css style sheet can convert the resume markdown file to an html page  </description>
     </item>
@@ -56,8 +56,8 @@ Markdown -&amp;gt; PDF  Pandoc is used to convert the Markdown file to a latex f
       <pubDate>Thu, 30 Aug 2018 12:00:00 -0700</pubDate>
       
       <guid>/works/galaxia/post/</guid>
-      <description>Photo: Jamen Percy
-Visions from the dust </description>
+      <description> Photo: Jamen Percy
+ Visions from the dust </description>
     </item>
     
     <item>
@@ -75,9 +75,9 @@ Visions from the dust </description>
       <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
       
       <guid>/about/</guid>
-      <description>Hi, I&amp;rsquo;m Gerald!
-Professionally, I&amp;rsquo;m an engineering leader who is passionate about automation, connected devices, culture and how to expand my own impact by empowering those that I work with.
-The past decade I have been spent flexing my technical leadership skills at 3Scan, by leading a small interdisciplinary team ranging from hardware and software engineers to biologists in building out a digital pathology production line. Our work revolved around combining automation, robotics and machine learning to extract spatial data from biological tissue samples.</description>
+      <description>Hello, I&amp;rsquo;m Gerald!
+As a dedicated engineering leader, my passion lies in automation, connected devices, culture, and amplifying my impact by empowering those I collaborate with. My journey has taken me through various roles, including working at 3Scan, Strateos, Skydio, and Cruise.
+Over the past decade, I&amp;rsquo;ve showcased my technical leadership at 3Scan by leading a diverse team consisting of hardware and software engineers, as well as biologists, to create a digital pathology production line.</description>
     </item>
     
     <item>
@@ -95,7 +95,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Tue, 30 Aug 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/brls/post/</guid>
-      <description>Involvement  Budgeting  Short and sweet: Lighting/Electrical budget was stated for $13k, due to the proliferation of Alibaba and using standardized electrical products, the final budget came in right around $7k.   Lighting design lead  Preliminary ideas required four main rotating lights, with sconces around the exterior of the structures to illuminate the outside. For the main light a discontinued &amp;lsquo;Space Cannon II&amp;rsquo; DMX controlled spotlight was donated to the project from someone in the community.</description>
+      <description>Involvement  Budgeting  Short and sweet: Lighting/Electrical budget was stated for $13k, due to the proliferation of Alibaba and using standardized electrical products, the final budget came in right around $7k.  Lighting design lead  Preliminary ideas required four main rotating lights, with sconces around the exterior of the structures to illuminate the outside. For the main light a discontinued &amp;lsquo;Space Cannon II&amp;rsquo; DMX controlled spotlight was donated to the project from someone in the community.</description>
     </item>
     
     <item>
@@ -104,7 +104,8 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Wed, 29 Jun 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/fish_bug/post/</guid>
-      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
+      <description>Half fish, half bug, fiberglass and a whole lot of steel 
+Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.  Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
     </item>
     
     <item>
@@ -113,7 +114,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Thu, 19 May 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/dreamscape/post/</guid>
-      <description>Involvement  Dreamland&amp;rsquo;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
+      <description>  Involvement  Dreamland&amp;rsquo;s lamp poles were reconfigured with edison bulbs, and two were wirelessly connected to create an physically disjoint set of social furniture benches that allowed participants to interact with the other benches lights.  Links  Flux Foundation Github  </description>
     </item>
     
     <item>
@@ -122,7 +123,7 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       <pubDate>Tue, 19 Apr 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/lighthouse_affair/post/</guid>
-      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring   Lighting Design  Philip&amp;rsquo;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.   Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult.</description>
+      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring  Lighting Design  Philip&amp;rsquo;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.  Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult. I found some disco ball motors in Cape Town, some square mirrors and welded up a frame to connect them all together.</description>
     </item>
     
     <item>
@@ -132,7 +133,17 @@ The past decade I have been spent flexing my technical leadership skills at 3Sca
       
       <guid>/works/dreamland/post/</guid>
       <description>A whimsical experience of vivid colors, dazzling light and flames transport participants to the world of spectacle and the carnivalesque. Photo: Duncan Rawlinson
-Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&amp;rsquo;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC. Carousel position was captured by creating a custom rotary encoder that consisted of a square tooth gear with two hall-effect sensors 90deg out of phase with one another.</description>
+ from Flavio Lemelle on Vimeo.
+ Involvement  Electro/Mechanical design  In order to pass both electricity and propane through the central spire&amp;rsquo;s hub, I designed a joint consisting of a rotary fluid union and an electrical slip ring. This design allowed for up to: 200cfm of propane and 25A @120VAC.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/resume/gspencer_eng/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/resume/gspencer_eng/</guid>
+      <description>gspencer_eng  code{white-space: pre-wrap;} span.smallcaps{font-variant: small-caps;} span.underline{text-decoration: underline;} div.column{display: inline-block; vertical-align: top; width: 50%;} div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;} ul.task-list{list-style: none;}  /* Whole document */ body { /*font-family: &#34;didact Gothic&#34;, sans-serif;*/ font-family: &#34;Helvetica Neue&#34;, Helvetica, Arial, sans-serif; max-width: 800px; margin: auto; background: #FFFFFF; padding: 10px 10px 10px 10px; } /* Title of the resume */ h1 { font-size: 55px; color: #757575; text-align:center; margin-bottom:15px; } /* Titles of categories */ h2 { /* This is called &#34;</description>
     </item>
     
   </channel>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>edc on Gerald</title>
@@ -17,7 +17,8 @@
       <pubDate>Wed, 29 Jun 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/fish_bug/post/</guid>
-      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
+      <description>Half fish, half bug, fiberglass and a whole lot of steel 
+Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.  Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
     </item>
     
   </channel>

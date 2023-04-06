@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>big art on Gerald</title>
@@ -26,8 +26,8 @@
       <pubDate>Thu, 30 Aug 2018 12:00:00 -0700</pubDate>
       
       <guid>/works/galaxia/post/</guid>
-      <description>Photo: Jamen Percy
-Visions from the dust </description>
+      <description> Photo: Jamen Percy
+ Visions from the dust </description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@ Visions from the dust </description>
       <pubDate>Tue, 30 Aug 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/brls/post/</guid>
-      <description>Involvement  Budgeting  Short and sweet: Lighting/Electrical budget was stated for $13k, due to the proliferation of Alibaba and using standardized electrical products, the final budget came in right around $7k.   Lighting design lead  Preliminary ideas required four main rotating lights, with sconces around the exterior of the structures to illuminate the outside. For the main light a discontinued &amp;lsquo;Space Cannon II&amp;rsquo; DMX controlled spotlight was donated to the project from someone in the community.</description>
+      <description>Involvement  Budgeting  Short and sweet: Lighting/Electrical budget was stated for $13k, due to the proliferation of Alibaba and using standardized electrical products, the final budget came in right around $7k.  Lighting design lead  Preliminary ideas required four main rotating lights, with sconces around the exterior of the structures to illuminate the outside. For the main light a discontinued &amp;lsquo;Space Cannon II&amp;rsquo; DMX controlled spotlight was donated to the project from someone in the community.</description>
     </item>
     
     <item>
@@ -54,7 +54,8 @@ Visions from the dust </description>
       <pubDate>Wed, 29 Jun 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/fish_bug/post/</guid>
-      <description>Half fish, half bug, fiberglass and a whole lot of steel Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.   Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
+      <description>Half fish, half bug, fiberglass and a whole lot of steel 
+Involvement  Lighting Design  Philips color kinetc lights were used to highlight Fishbug&amp;rsquo;s features. A custom python wrapper was used to control the lights via OSC messages were read from the mapping software to tigger color changes in sync with the local environment.  Spherical Projection Mapping  My first chance to play with projection mapping! Two projectors were used with HeavyM to map the inside of Fishbug&amp;rsquo;s fiberglass head.</description>
     </item>
     
     <item>
@@ -63,7 +64,7 @@ Visions from the dust </description>
       <pubDate>Tue, 19 Apr 2016 12:00:00 -0700</pubDate>
       
       <guid>/works/lighthouse_affair/post/</guid>
-      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring   Lighting Design  Philip&amp;rsquo;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.   Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult.</description>
+      <description>When the swiss and americans collide and decide to throw down in Tankwa Town Involvement  Electrical Design  Sourcing and rental of a generator Trenching plan to the structures Sound system wiring  Lighting Design  Philip&amp;rsquo;s color kinetics for each structure, all wirelessly networked, controlled from the DJ booth via custom python hooks.  Mechanical Design  Rotating lights&amp;hellip; this was Africa so sourcing things is difficult. I found some disco ball motors in Cape Town, some square mirrors and welded up a frame to connect them all together.</description>
     </item>
     
   </channel>
