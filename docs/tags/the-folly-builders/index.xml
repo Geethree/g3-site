@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>the folly builders on Gerald</title>
+    <link>/tags/the-folly-builders/</link>
+    <description>Recent content in the folly builders on Gerald</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Aug 2022 12:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/the-folly-builders/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2022 Burning Man - Paradisium</title>
+      <link>/works/paradisium/post/</link>
+      <pubDate>Tue, 30 Aug 2022 12:00:00 -0700</pubDate>
+      
+      <guid>/works/paradisium/post/</guid>
+      <description> Paradisium is a grove of trees reborn out of the ashes of The Folly. Photo: Mark Promson Involvement  Lighting Design Network Design  Links  Paradisium Github  Special Thanks  Mark Slee: Creator of LXStudio John &amp;ldquo;Parts&amp;rdquo; Taylor: Helping out with the RGBWUA light fixture patterns  </description>
+    </item>
+    
+  </channel>
+</rss>

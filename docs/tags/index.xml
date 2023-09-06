@@ -6,15 +6,24 @@
     <description>Recent content in Tags on Gerald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 30 Aug 2023 12:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>art car</title>
+      <link>/tags/art-car/</link>
+      <pubDate>Wed, 30 Aug 2023 12:00:00 -0700</pubDate>
+      
+      <guid>/tags/art-car/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>big art</title>
       <link>/tags/big-art/</link>
-      <pubDate>Fri, 30 Aug 2019 12:00:00 -0700</pubDate>
+      <pubDate>Wed, 30 Aug 2023 12:00:00 -0700</pubDate>
       
       <guid>/tags/big-art/</guid>
       <description></description>
@@ -23,9 +32,27 @@
     <item>
       <title>Burning Man</title>
       <link>/tags/burning-man/</link>
-      <pubDate>Fri, 30 Aug 2019 12:00:00 -0700</pubDate>
+      <pubDate>Wed, 30 Aug 2023 12:00:00 -0700</pubDate>
       
       <guid>/tags/burning-man/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>paradisium</title>
+      <link>/tags/paradisium/</link>
+      <pubDate>Tue, 30 Aug 2022 12:00:00 -0700</pubDate>
+      
+      <guid>/tags/paradisium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>the folly builders</title>
+      <link>/tags/the-folly-builders/</link>
+      <pubDate>Tue, 30 Aug 2022 12:00:00 -0700</pubDate>
+      
+      <guid>/tags/the-folly-builders/</guid>
       <description></description>
     </item>
     
