@@ -40,36 +40,6 @@ Involvement  Lighting Design Network Design  Links  Design Firm  Special Thanks 
     </item>
     
     <item>
-      <title>Website Makefile</title>
-      <link>/blahg/website_makefile/</link>
-      <pubDate>Sun, 11 Nov 2018 12:00:00 -0700</pubDate>
-      
-      <guid>/blahg/website_makefile/</guid>
-      <description>Computers and software are wonderful things, instead of remembering to:
- Ensure all node packages are installed and/or up-to-date Compile css bits Generate the resume: markdown -&amp;gt; laTex -&amp;gt; laTex -&amp;gt; PDF Compile the static hugo site Add all of the changed files to the git repo Insert a helpful commit message to remember the work that was done Push the changes to master  In particular, I always seem to forget step 5 and end up with missing files since everything wasn&amp;rsquo;t appropriately staged before the commit.</description>
-    </item>
-    
-    <item>
-      <title>Markdown resume</title>
-      <link>/blahg/markdown_resume/</link>
-      <pubDate>Sat, 03 Nov 2018 12:18:59 -0700</pubDate>
-      
-      <guid>/blahg/markdown_resume/</guid>
-      <description> I&amp;rsquo;ll be honest, I hate maintaiting my resume and CV. There is something about opening your editor of choice fiddling with parameters, saving as a PDF, naming the file and uploading it somewhere that requires too many steps. It sure would be nice if we could use MarkDown to generate a PDF automagically whenever I press a new version of this website.
-Pandoc and ConText to the rescue!
-Markdown -&amp;gt; PDF  Pandoc is used to convert the Markdown file to a latex file ConText is then used to to convert the latex file to a pdf  Markdown -&amp;gt; html  Pandoc and a css style sheet can convert the resume markdown file to an html page  </description>
-    </item>
-    
-    <item>
-      <title>Hello Hugo</title>
-      <link>/blahg/hello-world/</link>
-      <pubDate>Sat, 20 Oct 2018 13:18:59 -0700</pubDate>
-      
-      <guid>/blahg/hello-world/</guid>
-      <description>Testing out desiging a hugo theme. So far. So good.</description>
-    </item>
-    
-    <item>
       <title>2018 Burning Man - Temple Galaxia</title>
       <link>/works/galaxia/post/</link>
       <pubDate>Thu, 30 Aug 2018 12:00:00 -0700</pubDate>

@@ -20,12 +20,8 @@ googleAnalytics         = "UA-128762731-1"
 
 [[params.mainMenu]]
     link = "/about"
-    text = "who is Gerald?"
+    text = "who is gerald?"
 
 [[params.mainMenu]]
     link = "/works"
     text = "works"
-
-[[params.mainMenu]]
-    text = "blahg"
-    link = "https://medium.com/@geethree"
