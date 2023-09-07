@@ -25,3 +25,7 @@ googleAnalytics         = "UA-128762731-1"
 [[params.mainMenu]]
     link = "/works"
     text = "works"
+
+[[params.mainMenu]]
+    link = "/resume/gspencer_eng.pdf"
+    text = "resume"

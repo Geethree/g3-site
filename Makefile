@@ -62,8 +62,9 @@ watch:
 commit:
 	git add .
 	git status
-	read -p "Enter commit message: " commit
-	git commit -am "$commit"
+	read -p "Enter commit message: " commit; \
+	git commit -am "$$commit"; \
+	echo "$$commit"
 
 push:
 	git push origin master
