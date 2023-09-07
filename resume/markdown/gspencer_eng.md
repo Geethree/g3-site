@@ -20,9 +20,9 @@ Education
 Experience
 ----------
 2022 - Present
-:   **[Cruise] - Senior Site Reliability Enginner II**
+:   **[Cruise] - Staff Site Reliability Enginner**
 
-	Scaling the Fleet Product team's services vertically, horizontally and across regions to support Cruise's commericalization plan as autonomous vehicle fleets are rolled out to new geographic regions.
+	Designing and implementing a state of the art application and infrastructure deployment platform that helps Cruise's ~2500 engineers bring their ideas to the road. Key features include release attestation, packaging, visibility, governance, centralized user interface and commandline tools to make the delivery process as seamless and efficient as possible.
 
 2021 - 2022
 :   **[Skydio] - Engineering Manager - Infrastructure/Site Reliability**
