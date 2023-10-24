@@ -17,7 +17,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/resume/gspencer_eng/</guid>
-      <description>gspencer_eng  html { line-height: 1.5; font-family: Georgia, serif; font-size: 20px; color: #1a1a1a; background-color: #fdfdfd; } body { margin: 0 auto; max-width: 36em; padding-left: 50px; padding-right: 50px; padding-top: 50px; padding-bottom: 50px; hyphens: auto; overflow-wrap: break-word; text-rendering: optimizeLegibility; font-kerning: normal; } @media (max-width: 600px) { body { font-size: 0.9em; padding: 1em; } h1 { font-size: 1.8em; } } @media print { body { background-color: transparent; color: black; font-size: 12pt; } p, h2, h3 { orphans: 3; widows: 3; } h2, h3, h4 { page-break-after: avoid; } } p { margin: 1em 0; } a { color: #1a1a1a; } a:visited { color: #1a1a1a; } img { max-width: 100%; } h1, h2, h3, h4, h5, h6 { margin-top: 1.</description>
+      <description>gspencer_eng code{white-space: pre-wrap;} span.smallcaps{font-variant: small-caps;} span.underline{text-decoration: underline;} div.column{display: inline-block; vertical-align: top; width: 50%;}  /* Whole document */ body { /*font-family: &#34;didact Gothic&#34;, sans-serif;*/ font-family: &#34;Helvetica Neue&#34;, Helvetica, Arial, sans-serif; max-width: 800px; margin: auto; background: #FFFFFF; padding: 10px 10px 10px 10px; } /* Title of the resume */ h1 { font-size: 55px; color: #757575; text-align:center; margin-bottom:15px; } /* Titles of categories */ h2 { /* This is called &#34;sectioncolor&#34; in the ConTeXt stylesheet.</description>
     </item>
     
   </channel>

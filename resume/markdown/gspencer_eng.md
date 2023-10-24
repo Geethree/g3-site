@@ -4,42 +4,33 @@ Gerald Spencer
 
 > Multi-dimensional engineering leader passionate about:\
 > Automation, CI/CD, Community Building, Devops, Kubernetes and Networking\
-> <contact@geraldhspencer.com> • +1-510-838-2327
+> <contact@geraldhspencer.com> • +1-408-623-9465
 
 ----
-
-Education
----------
-
-**BSc, Mechanical Engineering W/ USCG License**
-   
-   - *California Maritime Academy (Vallejo, CA)*
-   - *Licensed United State Coast Guard 3rd Assistant Engineer*
-
 
 Experience
 ----------
 2022 - Present
-:   **[Cruise] - Staff Site Reliability Enginner**
+:   **[Cruise] - Staff Site Reliability Engineer Technical Lead Manager (TLM)**
 
-	Designing and implementing a state of the art application and infrastructure deployment platform that helps Cruise's ~2500 engineers bring their ideas to the road. Key features include release attestation, packaging, visibility, governance, centralized user interface and commandline tools to make the delivery process as seamless and efficient as possible.
+	As a Staff Site Reliability Engineer TLM focused on release and deployment of Cruise's software, I played a pivotal role in ensuring the reliability and efficiency of our processes. My experience Cruise honed my leadership, project management, and infrastructure optimization skills, contributing to Cruise's mission of redefining the future of transportation. This role equipped me with a wealth of knowledge and expertise, enabling me to lead cross-functional teams and drive continuous improvement. My key contributions included:
+
+    * **Release Attestation and Packaging**: Orchestrated the development and implementation of a robust release attestation packaging system, minimizing disruptions and enhancing operational efficiency.
+    * **Visibility and Governance**: Established comprehensive visibility and governance mechanisms, providing real-time insights into the deployment pipeline and maintaining quality and compliance standards.
+    * **Centralized User Interface**: Spearheaded the creation of an intuitive centralized user interface, simplifying the deployment process for our engineers.
+    * **Command-line Tools**: Oversaw the development of command-line tools that provided engineers with observability and automation options during deployments. 
 
 2021 - 2022
 :   **[Skydio] - Engineering Manager - Infrastructure/Site Reliability**
 
-	Leading a small team architecting, designing and operating the infrastructure and processes required to support Skydio's enterprise autonomous drone platform and the 150 engineers working on the platform.
+	Leading a small team architecting, designing and operating the infrastructure and processes required to support Skydio's enterprise autonomous drone platform and the 200 engineers working on the platform.
 
-    * Architected and implemented a complete revamp of Skydio's AWS deployment in support of SOC I/II
-       * Transitioned from one legacy account to an AWS organization with full SAML support for users
-       * Implemented a scalable transit system to ensure secure private communication between all of Skydio's networks
+    * Unlocked SOC 2 type 1 by architecting and implemented a complete revamp of Skydio's Cloud infrastructure over 3 quarters
     * Implemented an Incident Management process and on-call systems for external and internal customers
     * Championed the introduction of Kubernetes into the development lifecycle
-       * Developed a Bazel & jsonnet based manifest generation library
     * Uplifted legacy deployments of external services to automated highly available container based deployments
        * Reduced time to deploy from 2 hours to 15 minutes
-       * Automated deployments with instantaneous rollbacks
     * Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers
-    * Introduced a Continuous Deployment platform leveraged by every software team at Skydio to self service repeatable / reliable deployments
 
 2019 - 2021
 :   **[Strateos] - Director of Infrastructure**
@@ -53,12 +44,10 @@ Experience
     * Bootstrapped a multi-account AWS configuration from scratch with full infrastructure-as-code (terraform)
        * Seemlessly assimulated legacy pre-merger AWS accounts, and transferred workloads between accounts and regions
     * Lead multi-diplinary teams in converting legacy monolithic CI system(s) to a modern cloud native elastic CI system
-       * Modern elastic Jenkins backed by full configuration-as-ccode and GitOps methodologies 
     * Lead an SRE team in shifting manual legacy bare metal deployments to fully automated CI/CD deployments to Kubernetes
-       * Self-service and self-healing HA multi-cluster ArgoCD deployment
     * Implemented, maintained and operated a cloud native observability platform comprised of: Prometheus, grafana, alertmanager, sumologic and pagerduty
     * Implemented SSO via Okta for all mission-critical systems - from baremetal auth to internal apps to AWS to Eat Club
-    * Desgined and implemented a global transit system, by utilizing AWS transit gateways to:
+    * Designed and implemented a global transit network by:
        * Dynamically reconfigure the global network multi-region multi-cluster kubernetes footprint with local facilities via BGP peering
        * Provide a secure intranet for employees across the country, in Singapore, France and contractors in India
     * Provided mentorship and training across the teams with respect to: architecture, CI/CD, infrastructure and networking
@@ -106,6 +95,15 @@ Engineering Management
     * Have overseen complex multi-disciplinary teams from 2 to 15 engineers
     * Deeply enjoy seeding an engineering culture that will meet the future organization needs
 
+Education
+---------
+
+**BSc, Mechanical Engineering W/ USCG License**
+   
+   - *California Maritime Academy (Vallejo, CA)*
+   - *Licensed United State Coast Guard 3rd Assistant Engineer*
+
+
 [3Scan]: http://www.3scan.com
 [Black Rock Lighthouse Service]: https://journal.burningman.org/2016/08/burning-man-arts/brc-art/black-rock-lighthouse-service
 [Cruise]: https://www.getcruise.com
@@ -121,6 +119,6 @@ Engineering Management
 
 ----
 
-> <ger.spencer3@gmail.com> • +1-510-838-2327 \
+> <contact@geraldhspencer.com> • +1-408-623-9465 \
 > Oakland, California, USA \
 > [Github] • [Linkedin]

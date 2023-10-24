@@ -5,157 +5,14 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>gspencer_eng</title>
-  <style>
-    html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 1em;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
-      font-size: 85%;
-      margin: 0;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style type="text/css">
-
+  
   /* Whole document */
   body {
       /*font-family: "didact Gothic", sans-serif;*/
@@ -165,7 +22,7 @@
       background: #FFFFFF;
       padding: 10px 10px 10px 10px;
   }
-
+  
   /* Title of the resume */
   h1 {
       font-size: 55px;
@@ -173,7 +30,7 @@
       text-align:center;
       margin-bottom:15px;
   }
-
+  
   /* Titles of categories */
   h2 {
       /* This is called "sectioncolor" in the ConTeXt stylesheet. */
@@ -189,7 +46,7 @@
       /* This is called "rulecolor" in the ConTeXt stylesheet. */
       background-color: #757575;
   }
-
+  
   /* Definitions */
   dt {
       float: left;
@@ -203,23 +60,23 @@
       margin-top:0;
       margin-bottom:7px;
   }
-
+  
   /* Blockquotes */
   blockquote {
       text-align: center
   }
-
+  
   /* Links */
   a {
       text-decoration: none;
       color: darken($white, 20%);
   }
-
+  
   /* Horizontal separators */
   hr {
       color: #A6A6A6;
   }
-
+  
   table {
       width: 100%;
   }
@@ -230,147 +87,77 @@
 <hr />
 <blockquote>
 <p>Multi-dimensional engineering leader passionate about:<br />
-Automation, CI/CD, Community Building, Devops, Kubernetes and
-Networking<br />
-<a href="mailto:contact@geraldhspencer.com"
-class="email">contact@geraldhspencer.com</a> • +1-510-838-2327</p>
+Automation, CI/CD, Community Building, Devops, Kubernetes and Networking<br />
+<a href="mailto:contact@geraldhspencer.com" class="email">contact@geraldhspencer.com</a> • +1-408-623-9465</p>
 </blockquote>
 <hr />
-<h2 id="education">Education</h2>
-<p><strong>BSc, Mechanical Engineering W/ USCG License</strong></p>
-<ul>
-<li><em>California Maritime Academy (Vallejo, CA)</em></li>
-<li><em>Licensed United State Coast Guard 3rd Assistant
-Engineer</em></li>
-</ul>
 <h2 id="experience">Experience</h2>
 <dl>
 <dt>2022 - Present</dt>
-<dd>
-<p><strong><a href="https://www.getcruise.com"
-target="_blank">Cruise</a> - Staff Site Reliability
-Enginner</strong></p>
-<p>Designing and implementing a state of the art application and
-infrastructure deployment platform that helps Cruise’s ~2500 engineers
-bring their ideas to the road. Key features include release attestation,
-packaging, visibility, governance, centralized user interface and
-commandline tools to make the delivery process as seamless and efficient
-as possible.</p>
+<dd><p><strong><a href="https://www.getcruise.com" target="_blank">Cruise</a> - Staff Site Reliability Engineer Technical Lead Manager (TLM)</strong></p>
+<p>As a Staff Site Reliability Engineer TLM focused on release and deployment of Cruise’s software, I played a pivotal role in ensuring the reliability and efficiency of our processes. My experience Cruise honed my leadership, project management, and infrastructure optimization skills, contributing to Cruise’s mission of redefining the future of transportation. This role equipped me with a wealth of knowledge and expertise, enabling me to lead cross-functional teams and drive continuous improvement. My key contributions included:</p>
+<ul>
+<li><strong>Release Attestation and Packaging</strong>: Orchestrated the development and implementation of a robust release attestation packaging system, minimizing disruptions and enhancing operational efficiency.</li>
+<li><strong>Visibility and Governance</strong>: Established comprehensive visibility and governance mechanisms, providing real-time insights into the deployment pipeline and maintaining quality and compliance standards.</li>
+<li><strong>Centralized User Interface</strong>: Spearheaded the creation of an intuitive centralized user interface, simplifying the deployment process for our engineers.</li>
+<li><strong>Command-line Tools</strong>: Oversaw the development of command-line tools that provided engineers with observability and automation options during deployments.</li>
+</ul>
 </dd>
 <dt>2021 - 2022</dt>
-<dd>
-<p><strong><a href="https://www.skydio.com" target="_blank">Skydio</a> -
-Engineering Manager - Infrastructure/Site Reliability</strong></p>
-<p>Leading a small team architecting, designing and operating the
-infrastructure and processes required to support Skydio’s enterprise
-autonomous drone platform and the 150 engineers working on the
-platform.</p>
+<dd><p><strong><a href="https://www.skydio.com" target="_blank">Skydio</a> - Engineering Manager - Infrastructure/Site Reliability</strong></p>
+<p>Leading a small team architecting, designing and operating the infrastructure and processes required to support Skydio’s enterprise autonomous drone platform and the 200 engineers working on the platform.</p>
 <ul>
-<li>Architected and implemented a complete revamp of Skydio’s AWS
-deployment in support of SOC I/II
-<ul>
-<li>Transitioned from one legacy account to an AWS organization with
-full SAML support for users</li>
-<li>Implemented a scalable transit system to ensure secure private
-communication between all of Skydio’s networks</li>
-</ul></li>
-<li>Implemented an Incident Management process and on-call systems for
-external and internal customers</li>
-<li>Championed the introduction of Kubernetes into the development
-lifecycle
-<ul>
-<li>Developed a Bazel &amp; jsonnet based manifest generation
-library</li>
-</ul></li>
-<li>Uplifted legacy deployments of external services to automated highly
-available container based deployments
+<li>Unlocked SOC 2 type 1 by architecting and implemented a complete revamp of Skydio’s Cloud infrastructure over 3 quarters</li>
+<li>Implemented an Incident Management process and on-call systems for external and internal customers</li>
+<li>Championed the introduction of Kubernetes into the development lifecycle</li>
+<li>Uplifted legacy deployments of external services to automated highly available container based deployments
 <ul>
 <li>Reduced time to deploy from 2 hours to 15 minutes</li>
-<li>Automated deployments with instantaneous rollbacks</li>
 </ul></li>
-<li>Revamped Continuous integration systems to scale to 5000 builds a
-day across 2500 ephemeral workers</li>
-<li>Introduced a Continuous Deployment platform leveraged by every
-software team at Skydio to self service repeatable / reliable
-deployments</li>
+<li>Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers</li>
 </ul>
 </dd>
 <dt>2019 - 2021</dt>
-<dd>
-<p><strong><a href="http://www.strateos.com"
-target="_blank">Strateos</a> - Director of Infrastructure</strong></p>
-<p>Designing, developing, implementing and operating the robotic cloud
-drug discovery labs of the future.</p>
+<dd><p><strong><a href="http://www.strateos.com" target="_blank">Strateos</a> - Director of Infrastructure</strong></p>
+<p>Designing, developing, implementing and operating the robotic cloud drug discovery labs of the future.</p>
 <ul>
-<li>Actively worked with Product to strategically develop the Eng.Org’s
-infrastructure roadmap to meet future growth targets
+<li>Actively worked with Product to strategically develop the Eng.Org’s infrastructure roadmap to meet future growth targets
 <ul>
 <li>One facility to four facilities across two continents</li>
 </ul></li>
 <li>Revamped legacy build systems:
 <ul>
-<li>Decreased build times by 13x and drastically increased the org’s
-feature velocity</li>
+<li>Decreased build times by 13x and drastically increased the org’s feature velocity</li>
 </ul></li>
-<li>Bootstrapped a multi-account AWS configuration from scratch with
-full infrastructure-as-code (terraform)
+<li>Bootstrapped a multi-account AWS configuration from scratch with full infrastructure-as-code (terraform)
 <ul>
-<li>Seemlessly assimulated legacy pre-merger AWS accounts, and
-transferred workloads between accounts and regions</li>
+<li>Seemlessly assimulated legacy pre-merger AWS accounts, and transferred workloads between accounts and regions</li>
 </ul></li>
-<li>Lead multi-diplinary teams in converting legacy monolithic CI
-system(s) to a modern cloud native elastic CI system
+<li>Lead multi-diplinary teams in converting legacy monolithic CI system(s) to a modern cloud native elastic CI system</li>
+<li>Lead an SRE team in shifting manual legacy bare metal deployments to fully automated CI/CD deployments to Kubernetes</li>
+<li>Implemented, maintained and operated a cloud native observability platform comprised of: Prometheus, grafana, alertmanager, sumologic and pagerduty</li>
+<li>Implemented SSO via Okta for all mission-critical systems - from baremetal auth to internal apps to AWS to Eat Club</li>
+<li>Designed and implemented a global transit network by:
 <ul>
-<li>Modern elastic Jenkins backed by full configuration-as-ccode and
-GitOps methodologies</li>
+<li>Dynamically reconfigure the global network multi-region multi-cluster kubernetes footprint with local facilities via BGP peering</li>
+<li>Provide a secure intranet for employees across the country, in Singapore, France and contractors in India</li>
 </ul></li>
-<li>Lead an SRE team in shifting manual legacy bare metal deployments to
-fully automated CI/CD deployments to Kubernetes
-<ul>
-<li>Self-service and self-healing HA multi-cluster ArgoCD
-deployment</li>
-</ul></li>
-<li>Implemented, maintained and operated a cloud native observability
-platform comprised of: Prometheus, grafana, alertmanager, sumologic and
-pagerduty</li>
-<li>Implemented SSO via Okta for all mission-critical systems - from
-baremetal auth to internal apps to AWS to Eat Club</li>
-<li>Desgined and implemented a global transit system, by utilizing AWS
-transit gateways to:
-<ul>
-<li>Dynamically reconfigure the global network multi-region
-multi-cluster kubernetes footprint with local facilities via BGP
-peering</li>
-<li>Provide a secure intranet for employees across the country, in
-Singapore, France and contractors in India</li>
-</ul></li>
-<li>Provided mentorship and training across the teams with respect to:
-architecture, CI/CD, infrastructure and networking</li>
+<li>Provided mentorship and training across the teams with respect to: architecture, CI/CD, infrastructure and networking</li>
 </ul>
 </dd>
 <dt>2013 - 2019</dt>
-<dd>
-<p><strong><a href="http://www.3scan.com" target="_blank">3Scan</a> -
-Director of Production Engineering</strong></p>
-<p>Oversaw a multi-disciplinary team of 15 - from hardware to software
-engineers, and biologists to product specialists - to develop a
-high-resolution/high-throughput 3D medical imaging system.</p>
+<dd><p><strong><a href="http://www.3scan.com" target="_blank">3Scan</a> - Director of Production Engineering</strong></p>
+<p>Oversaw a multi-disciplinary team of 15 - from hardware to software engineers, and biologists to product specialists - to develop a high-resolution/high-throughput 3D medical imaging system.</p>
 <ul>
-<li>Lead a team of software engineers in designing, developing and
-implementing a system capable of ingesting 24GB/s of imagery
+<li>Lead a team of software engineers in designing, developing and implementing a system capable of ingesting 24GB/s of imagery
 <ul>
-<li>Redesigned the original storage pipeline from a massive bare metal
-Ceph deployment to a cloud native objectstore backeend that reached a
-max size of 3.8PB</li>
+<li>Redesigned the original storage pipeline from a massive bare metal Ceph deployment to a cloud native objectstore backeend that reached a max size of 3.8PB</li>
 </ul></li>
-<li>Merged a facility with the AWS cloud by executing a build out with
-40Gbps of leased fiber from AWS(us-west-2) into downtown SF
+<li>Merged a facility with the AWS cloud by executing a build out with 40Gbps of leased fiber from AWS(us-west-2) into downtown SF
 <ul>
-<li>Lead the effort for 3Scan to become officially recognized by
-ARIN</li>
+<li>Lead the effort for 3Scan to become officially recognized by ARIN</li>
 <li>Acquire publically addressable /24 block of IPv4 space</li>
-<li>Owned and operated BGP routing systems with two ISPs and AWS to
-route imagery into S3</li>
+<li>Owned and operated BGP routing systems with two ISPs and AWS to route imagery into S3</li>
 </ul></li>
 </ul>
 </dd>
@@ -378,63 +165,46 @@ route imagery into S3</li>
 <h2 id="technical-experience">Technical Experience</h2>
 <dl>
 <dt>Software/System Design</dt>
-<dd>
-<p>Production ready systems should be modular, composable, reliable and
-operation on the principle of least surprise.</p>
+<dd><p>Production ready systems should be modular, composable, reliable and operation on the principle of least surprise.</p>
 <p>Extensive experience with the following:</p>
 <ul>
-<li><strong>Build systems</strong>: Bazel, CMake, Gradle, Lerna, Maven,
-Tox, Poetry</li>
-<li><strong>CI/CD</strong>: ArgoCD, AWS CodePipeline, Buildkite,
-CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis</li>
-<li><strong>Cloud Infrastructure</strong>: All things compute,
-networking, storage, security, AI/ML related to AWS or GCP</li>
-<li><strong>Configuration Management</strong>: Ansible, Puppet,
-Terraform</li>
-<li><strong>Containers/Micro-services</strong>: Docker, ECS, jib,
-Kubernetes, Lambda, KNative, Kubeless</li>
-<li><strong>Development Environments</strong>: AWS Cloud9, Docker,
-Eclipse Che, Gitpod, Intellij, Vagrant</li>
-<li><strong>Edge Computing</strong>: Akri, Balena Cloud, ioFog, AWS
-Greengrass, AWS IOT Core</li>
+<li><strong>Build systems</strong>: Bazel, CMake, Gradle, Lerna, Maven, Tox, Poetry</li>
+<li><strong>CI/CD</strong>: ArgoCD, AWS CodePipeline, Buildkite, CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis</li>
+<li><strong>Cloud Infrastructure</strong>: All things compute, networking, storage, security, AI/ML related to AWS or GCP</li>
+<li><strong>Configuration Management</strong>: Ansible, Puppet, Terraform</li>
+<li><strong>Containers/Micro-services</strong>: Docker, ECS, jib, Kubernetes, Lambda, KNative, Kubeless</li>
+<li><strong>Development Environments</strong>: AWS Cloud9, Docker, Eclipse Che, Gitpod, Intellij, Vagrant</li>
+<li><strong>Edge Computing</strong>: Akri, Balena Cloud, ioFog, AWS Greengrass, AWS IOT Core</li>
 <li><strong>Identity Management</strong>: Active Directory, Okta</li>
-<li><strong>IT/Networking</strong>: Managed 3Scan’s AS, BGP peering with
-multiple ISPs and AWS. Cisco/JunoOS you name it!</li>
-<li><strong>Languages</strong>: Bash, Python, Java, Go, Javascript,
-.Net, Node, Python, Scala, Typescript</li>
-<li><strong>Observability</strong>: ELK, Grafana, Prometheus, Sumologic,
-Splunk</li>
-<li><strong>Operating Systems</strong>: At home in any flavor of linux,
-MacOS and windows</li>
+<li><strong>IT/Networking</strong>: Managed 3Scan’s AS, BGP peering with multiple ISPs and AWS. Cisco/JunoOS you name it!</li>
+<li><strong>Languages</strong>: Bash, Python, Java, Go, Javascript, .Net, Node, Python, Scala, Typescript</li>
+<li><strong>Observability</strong>: ELK, Grafana, Prometheus, Sumologic, Splunk</li>
+<li><strong>Operating Systems</strong>: At home in any flavor of linux, MacOS and windows</li>
 <li><strong>Service Mesh</strong>: Consul, Istio, LinkerD</li>
 </ul>
 </dd>
 <dt>Engineering Management</dt>
-<dd>
-<p>Engineering is fundamentally a creative task, and the job of a strong
-Leader is to maximize people’s ability to get the thing they want to do
-done.</p>
+<dd><p>Engineering is fundamentally a creative task, and the job of a strong Leader is to maximize people’s ability to get the thing they want to do done.</p>
 <ul>
-<li><strong>Agile methodologies</strong>: Applied to both software and
-hardware</li>
-<li><strong>Project management</strong>: From gantt charts and QFDs to
-task management, OKRs and KPIs</li>
+<li><strong>Agile methodologies</strong>: Applied to both software and hardware</li>
+<li><strong>Project management</strong>: From gantt charts and QFDs to task management, OKRs and KPIs</li>
 <li>The customer experience is key, dog-fooding is a must</li>
-<li>Have overseen complex multi-disciplinary teams from 2 to 15
-engineers</li>
-<li>Deeply enjoy seeding an engineering culture that will meet the
-future organization needs</li>
+<li>Have overseen complex multi-disciplinary teams from 2 to 15 engineers</li>
+<li>Deeply enjoy seeding an engineering culture that will meet the future organization needs</li>
 </ul>
 </dd>
 </dl>
+<h2 id="education">Education</h2>
+<p><strong>BSc, Mechanical Engineering W/ USCG License</strong></p>
+<ul>
+<li><em>California Maritime Academy (Vallejo, CA)</em></li>
+<li><em>Licensed United State Coast Guard 3rd Assistant Engineer</em></li>
+</ul>
 <hr />
 <blockquote>
-<p><a href="mailto:ger.spencer3@gmail.com"
-class="email">ger.spencer3@gmail.com</a> • +1-510-838-2327<br />
+<p><a href="mailto:contact@geraldhspencer.com" class="email">contact@geraldhspencer.com</a> • +1-408-623-9465<br />
 Oakland, California, USA<br />
-<a href="https://github.com/Geethree" target="_blank">Github</a> • <a
-href="https://www.linkedin.com/in/gerald-spencer-bb2617123/"
-target="_blank">Linkedin</a></p>
+<a href="https://github.com/Geethree" target="_blank">Github</a> • <a href="https://www.linkedin.com/in/gerald-spencer-bb2617123/" target="_blank">Linkedin</a></p>
 </blockquote>
 </body>
 </html>
