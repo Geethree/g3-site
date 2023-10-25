@@ -3,7 +3,7 @@ Gerald Spencer
 ----
 
 > Multi-dimensional engineering leader passionate about:\
-> Automation, CI/CD, Community Building, Devops, Kubernetes and Networking\
+> Culture Building, Observability, Reliability and Scalability\
 > <contact@geraldhspencer.com> • +1-408-623-9465
 
 ----
