@@ -31,6 +31,7 @@ Experience
     * Uplifted legacy deployments of external services to automated highly available container based deployments
        * Reduced time to deploy from 2 hours to 15 minutes
     * Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers
+      * Developed a backend worker pool management platform (python)
 
 2019 - 2021
 :   **[Strateos] - Director of Infrastructure (Merged with 3Scan)**
@@ -47,7 +48,7 @@ Experience
     * Lead an SRE team in shifting manual legacy bare metal deployments to fully automated CI/CD deployments to Kubernetes
     * Implemented, maintained and operated a cloud native observability platform comprised of: Prometheus, grafana, alertmanager, sumologic and pagerduty
     * Implemented SSO via Okta for all mission-critical systems - from baremetal auth to internal apps to AWS to Eat Club
-    * Designed and implemented a global transit network by:
+    * Designed and implemented a programmatically(python) defined global transit network by:
        * Dynamically reconfigure the global network multi-region multi-cluster kubernetes footprint with local facilities via BGP peering
        * Provide a secure intranet for employees across the country, in Singapore, France and contractors in India
     * Provided mentorship and training across the teams with respect to: architecture, CI/CD, infrastructure and networking
