@@ -13,7 +13,7 @@ Experience
 2022 - Present
 :   **[Cruise] - Staff Site Reliability Engineer Technical Lead Manager (TLM)**
 
-	As a Staff Site Reliability Engineer TLM focused on release and deployment of Cruise's software, I played a pivotal role in ensuring the reliability and efficiency of our processes. My experience Cruise honed my leadership, project management, and infrastructure optimization skills, contributing to Cruise's mission of redefining the future of transportation. This role equipped me with a wealth of knowledge and expertise, enabling me to lead cross-functional teams and drive continuous improvement. My key contributions included:
+	As a Staff Site Reliability Engineer TLM focused on release and deployment of Cruise's software, I played a pivotal role in ensuring the reliability and efficiency of our processes. My experience at Cruise has honed my leadership, project management, and infrastructure optimization skills, contributing to Cruise's mission of redefining the future of transportation. This role equipped me with a wealth of knowledge and expertise, enabling me to lead cross-functional teams and drive continuous improvement. My key contributions included:
 
     * **Release Attestation and Packaging**: Orchestrated the development and implementation of a robust release attestation packaging system, minimizing disruptions and enhancing operational efficiency.
     * **Visibility and Governance**: Established comprehensive visibility and governance mechanisms, providing real-time insights into the deployment pipeline and maintaining quality and compliance standards.
@@ -33,7 +33,7 @@ Experience
     * Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers
 
 2019 - 2021
-:   **[Strateos] - Director of Infrastructure**
+:   **[Strateos] - Director of Infrastructure (Merged with 3Scan)**
 
 	Designing, developing, implementing and operating the robotic cloud drug discovery labs of the future.
 
