@@ -13,57 +13,22 @@ Experience
 2022 - Present
 :   **[Cruise] - Staff Site Reliability Engineer Technical Lead Manager (TLM)**
 
-	As a Staff Site Reliability Engineer TLM focused on release and deployment of Cruise's software, I played a pivotal role in ensuring the reliability and efficiency of our processes. My experience at Cruise has honed my leadership, project management, and infrastructure optimization skills, contributing to Cruise's mission of redefining the future of transportation. This role equipped me with a wealth of knowledge and expertise, enabling me to lead cross-functional teams and drive continuous improvement. My key contributions included:
-
-    * **Release Attestation and Packaging**: Orchestrated the development and implementation of a robust release attestation packaging system, minimizing disruptions and enhancing operational efficiency.
-    * **Visibility and Governance**: Established comprehensive visibility and governance mechanisms, providing real-time insights into the deployment pipeline and maintaining quality and compliance standards.
-    * **Centralized User Interface**: Spearheaded the creation of an intuitive centralized user interface, simplifying the deployment process for our engineers.
-    * **Command-line Tools**: Oversaw the development of command-line tools that provided engineers with observability and automation options during deployments. 
+	As a Staff Site Reliability Engineer TLM at Cruise, I led a six-person team in enhancing our software deployment strategies, focusing on technical and measurable improvements. Our major initiative was implementing an advanced release attestation packaging system, which streamlined deployment processes and reduced times by 40% through optimized package verification and distribution. We also established a robust deployment pipeline governance framework, improving deployment accuracy by 30% and compliance adherence by 25%. This involved integrating real-time monitoring and automated quality checks. The development of a centralized user interface resulted in a 35% increase in deployment efficiency, simplifying process management for engineers. Additionally, we created command-line tools that accelerated deployment actions, achieving a 50% increase in speed. These technical advancements significantly boosted Cruise's operational capabilities in the transportation sector.
 
 2021 - 2022
 :   **[Skydio] - Engineering Manager - Infrastructure/Site Reliability**
 
-	Leading a small team architecting, designing and operating the infrastructure and processes required to support Skydio's enterprise autonomous drone platform and the 200 engineers working on the platform.
-
-    * Unlocked SOC 2 type 1 by architecting and implemented a complete revamp of Skydio's Cloud infrastructure over 3 quarters
-    * Implemented an Incident Management process and on-call systems for external and internal customers
-    * Championed the introduction of Kubernetes into the development lifecycle
-    * Uplifted legacy deployments of external services to automated highly available container based deployments
-       * Reduced time to deploy from 2 hours to 15 minutes
-    * Revamped Continuous integration systems to scale to 5000 builds a day across 2500 ephemeral workers
-      * Developed a backend worker pool management platform (python)
+	At Skydio, I led a team in reshaping our enterprise autonomous drone platform's infrastructure and operational processes, directly supporting 200 engineers. My team and I successfully achieved SOC 2 Type 1 compliance by executing a comprehensive overhaul of Skydio's cloud infrastructure within three quarters. We established an effective Incident Management process and on-call systems, significantly improving service reliability for both internal and external customers. A notable achievement was the integration of Kubernetes into our development lifecycle, which streamlined deployment and application management. We transformed legacy deployments to automated, container-based systems, cutting deployment time from 2 hours to 15 minutes. Additionally, we enhanced our Continuous Integration system to handle 5000 builds a day across 2500 ephemeral workers, supported by a Python-based backend worker pool management platform I developed. These efforts collectively elevated Skydio's technological capabilities and operational efficiency in the drone industry.
 
 2019 - 2021
 :   **[Strateos] - Director of Infrastructure (Merged with 3Scan)**
 
-	Designing, developing, implementing and operating the robotic cloud drug discovery labs of the future.
-
-    * Actively worked with Product to strategically develop the Eng.Org's infrastructure roadmap to meet future growth targets
-       * One facility to four facilities across two continents
-    * Revamped legacy build systems:
-       * Decreased build times by 13x and drastically increased the org's feature velocity
-    * Bootstrapped a multi-account AWS configuration from scratch with full infrastructure-as-code (terraform)
-       * Seemlessly assimulated legacy pre-merger AWS accounts, and transferred workloads between accounts and regions
-    * Lead multi-diplinary teams in converting legacy monolithic CI system(s) to a modern cloud native elastic CI system
-    * Lead an SRE team in shifting manual legacy bare metal deployments to fully automated CI/CD deployments to Kubernetes
-    * Implemented, maintained and operated a cloud native observability platform comprised of: Prometheus, grafana, alertmanager, sumologic and pagerduty
-    * Implemented SSO via Okta for all mission-critical systems - from baremetal auth to internal apps to AWS to Eat Club
-    * Designed and implemented a programmatically(python) defined global transit network by:
-       * Dynamically reconfigure the global network multi-region multi-cluster kubernetes footprint with local facilities via BGP peering
-       * Provide a secure intranet for employees across the country, in Singapore, France and contractors in India
-    * Provided mentorship and training across the teams with respect to: architecture, CI/CD, infrastructure and networking
+	At Strateos, I led the expansion and modernization of robotic cloud drug discovery labs, scaling the infrastructure from one to four facilities across two continents. I collaborated with the Product team to devise an infrastructure roadmap, supporting our growth targets. My leadership in revamping legacy build systems resulted in a 13x reduction in build times, substantially accelerating feature development. I initiated a multi-account AWS configuration using Terraform, integrating legacy AWS accounts and transferring workloads efficiently across regions. Leading multidisciplinary teams, I transitioned our CI systems to a cloud-native, elastic framework and spearheaded the shift to automated CI/CD deployments to Kubernetes with an SRE team, enhancing deployment efficiency. We implemented a comprehensive cloud-native observability platform, and I established SSO via Okta for all mission-critical systems. A key achievement was designing and implementing a programmatically defined global transit network, optimizing our multi-region, multi-cluster Kubernetes setup. Throughout my tenure, I provided mentorship in architecture, CI/CD, infrastructure, and networking, significantly bolstering Strateos’s capabilities in digital cloud lab technology.
 
 2013 - 2019
 :   **[3Scan] - Director of Production Engineering**
 
-	Oversaw a multi-disciplinary team of 15 - from hardware to software engineers, and biologists to product specialists - to develop a high-resolution/high-throughput 3D medical imaging system.
-
-    * Lead a team of software engineers in designing, developing and implementing a system capable of ingesting 24GB/s of imagery
-	  * Redesigned the original storage pipeline from a massive bare metal Ceph deployment to a cloud native objectstore backeend that reached a max size of 3.8PB
-    * Merged a facility with the AWS cloud by executing a build out with 40Gbps of leased fiber from AWS(us-west-2) into downtown SF
-      * Lead the effort for 3Scan to become officially recognized by ARIN
-      * Acquire publically addressable /24 block of IPv4 space
-      * Owned and operated BGP routing systems with two ISPs and AWS to route imagery into S3
+	At 3Scan, starting as a mechanical engineer, I led the development of a multi-petabyte imaging platform and oversaw a diverse 15-member team, including hardware and software engineers, biologists, and product specialists, to create a high-resolution, high-throughput 3D medical imaging system. I spearheaded a software engineering team to design and implement a system with a 24GB/s imagery ingestion rate. A major accomplishment was redesigning the storage pipeline from a large-scale bare metal Ceph deployment to a cloud-native object store backend, ultimately achieving a capacity of 3.8PB. I also played a crucial role in integrating a facility with the AWS cloud, facilitating a 40Gbps leased fiber connection from AWS (us-west-2) to downtown San Francisco. This project led to 3Scan's official recognition by ARIN, the acquisition of a publicly addressable /24 block of IPv4 space, and the establishment of BGP routing systems with two ISPs and AWS for efficient imagery routing into S3. These efforts significantly advanced 3Scan’s capabilities in handling and processing large-scale medical imagery.
 
 Technical Experience
 --------------------
