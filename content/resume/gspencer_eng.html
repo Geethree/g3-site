@@ -5,14 +5,157 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>gspencer_eng</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <style type="text/css">
-  
+
   /* Whole document */
   body {
       /*font-family: "didact Gothic", sans-serif;*/
@@ -22,7 +165,7 @@
       background: #FFFFFF;
       padding: 10px 10px 10px 10px;
   }
-  
+
   /* Title of the resume */
   h1 {
       font-size: 55px;
@@ -30,7 +173,7 @@
       text-align:center;
       margin-bottom:15px;
   }
-  
+
   /* Titles of categories */
   h2 {
       /* This is called "sectioncolor" in the ConTeXt stylesheet. */
@@ -46,7 +189,7 @@
       /* This is called "rulecolor" in the ConTeXt stylesheet. */
       background-color: #757575;
   }
-  
+
   /* Definitions */
   dt {
       float: left;
@@ -60,23 +203,23 @@
       margin-top:0;
       margin-bottom:7px;
   }
-  
+
   /* Blockquotes */
   blockquote {
       text-align: center
   }
-  
+
   /* Links */
   a {
       text-decoration: none;
       color: darken($white, 20%);
   }
-  
+
   /* Horizontal separators */
   hr {
       color: #A6A6A6;
   }
-  
+
   table {
       width: 100%;
   }
@@ -84,61 +227,132 @@
 </head>
 <body>
 <h1 id="gerald-spencer">Gerald Spencer</h1>
-<hr />
 <blockquote>
 <p>Multi-dimensional engineering leader passionate about:<br />
 Culture Building, Observability, Reliability and Scalability<br />
-<a href="mailto:contact@geraldhspencer.com" class="email">contact@geraldhspencer.com</a> • +1-408-623-9465</p>
+<a href="mailto:contact@geraldhspencer.com"
+class="email">contact@geraldhspencer.com</a> • +1-408-623-9465</p>
 </blockquote>
 <hr />
 <h2 id="experience">Experience</h2>
 <dl>
 <dt>2022 - Present</dt>
-<dd><p><strong><a href="https://www.getcruise.com" target="_blank">Cruise</a> - Staff Site Reliability Engineer Technical Lead Manager (TLM)</strong></p>
-<p>As a Staff Site Reliability Engineer TLM at Cruise, I led a six-person team in enhancing our software deployment strategies, focusing on technical and measurable improvements. Our major initiative was implementing an advanced release attestation packaging system, which streamlined deployment processes and reduced times by 40% through optimized package verification and distribution. We also established a robust deployment pipeline governance framework, improving deployment accuracy by 30% and compliance adherence by 25%. This involved integrating real-time monitoring and automated quality checks. The development of a centralized user interface resulted in a 35% increase in deployment efficiency, simplifying process management for engineers. Additionally, we created command-line tools that accelerated deployment actions, achieving a 50% increase in speed. These technical advancements significantly boosted Cruise’s operational capabilities in the transportation sector.</p>
+<dd>
+<p><strong><a href="https://www.getcruise.com"
+target="_blank">Cruise</a> - Staff Site Reliability Engineer Technical
+Lead Manager (TLM)</strong></p>
+<p>As Staff Site Reliability Engineer TLM at Cruise, I spearheaded a
+team of six in designing, implementing and operating Cruise’s
+declarative release and deployment platform. Key achievements
+include:</p>
+<ul>
+<li>Developed and implemented an advanced release attestation packaging
+system, reducing deployment times by 40%.</li>
+<li>Established a deployment pipeline governance framework, enhancing
+deployment accuracy by 30% and compliance by 25%.</li>
+<li>Integrated real-time monitoring and automated quality checks.</li>
+<li>Launched a centralized user interface, boosting deployment
+efficiency by 35%.</li>
+<li>Created command-line tools, accelerating deployment actions by
+50%.</li>
+</ul>
 </dd>
 <dt>2021 - 2022</dt>
-<dd><p><strong><a href="https://www.skydio.com" target="_blank">Skydio</a> - Engineering Manager - Infrastructure/Site Reliability</strong></p>
-<p>At Skydio, I led a team in reshaping our enterprise autonomous drone platform’s infrastructure and operational processes, directly supporting 200 engineers. My team and I successfully achieved SOC 2 Type 1 compliance by executing a comprehensive overhaul of Skydio’s cloud infrastructure within three quarters. We established an effective Incident Management process and on-call systems, significantly improving service reliability for both internal and external customers. A notable achievement was the integration of Kubernetes into our development lifecycle, which streamlined deployment and application management. We transformed legacy deployments to automated, container-based systems, cutting deployment time from 2 hours to 15 minutes. Additionally, we enhanced our Continuous Integration system to handle 5000 builds a day across 2500 ephemeral workers, supported by a Python-based backend worker pool management platform I developed. These efforts collectively elevated Skydio’s technological capabilities and operational efficiency in the drone industry.</p>
+<dd>
+<p><strong><a href="https://www.skydio.com" target="_blank">Skydio</a> -
+Staff Engineer - Infrastructure/Site Reliability</strong></p>
+<p>At Skydio, I led a team in transforming the enterprise autonomous
+drone platform’s infrastructure, supporting 200 engineers. Key
+accomplishments include:</p>
+<ul>
+<li>Migrated legacy build system from custom cmake to bazel.</li>
+<li>Established an effective Incident Management process and on-call
+systems, enhancing service reliability.</li>
+<li>Integrated Kubernetes into the development lifecycle, optimizing
+deployment and application management.</li>
+<li>Transitioned to manual legacy deployments to automated
+container-based deployments, reducing deployment time from 2 hours to 15
+minutes.</li>
+<li>Upgraded Continuous Integration system to handle 5000 daily builds
+across 2500 ephemeral workers, supported by a custom Python-based
+management platform.</li>
+</ul>
 </dd>
-<dt>2019 - 2021</dt>
-<dd><p><strong><a href="http://www.strateos.com" target="_blank">Strateos</a> - Director of Infrastructure (Merged with 3Scan)</strong></p>
-<p>At Strateos, I led the expansion and modernization of robotic cloud drug discovery labs, scaling the infrastructure from one to four facilities across two continents. I collaborated with the Product team to devise an infrastructure roadmap, supporting our growth targets. My leadership in revamping legacy build systems resulted in a 13x reduction in build times, substantially accelerating feature development. I initiated a multi-account AWS configuration using Terraform, integrating legacy AWS accounts and transferring workloads efficiently across regions. Leading multidisciplinary teams, I transitioned our CI systems to a cloud-native, elastic framework and spearheaded the shift to automated CI/CD deployments to Kubernetes with an SRE team, enhancing deployment efficiency. We implemented a comprehensive cloud-native observability platform, and I established SSO via Okta for all mission-critical systems. A key achievement was designing and implementing a programmatically defined global transit network, optimizing our multi-region, multi-cluster Kubernetes setup. Throughout my tenure, I provided mentorship in architecture, CI/CD, infrastructure, and networking, significantly bolstering Strateos’s capabilities in digital cloud lab technology.</p>
-</dd>
-<dt>2013 - 2019</dt>
-<dd><p><strong><a href="http://www.3scan.com" target="_blank">3Scan</a> - Director of Production Engineering</strong></p>
-<p>At 3Scan, starting as a mechanical engineer, I led the development of a multi-petabyte imaging platform and oversaw a diverse 15-member team, including hardware and software engineers, biologists, and product specialists, to create a high-resolution, high-throughput 3D medical imaging system. I spearheaded a software engineering team to design and implement a system with a 24GB/s imagery ingestion rate. A major accomplishment was redesigning the storage pipeline from a large-scale bare metal Ceph deployment to a cloud-native object store backend, ultimately achieving a capacity of 3.8PB. I also played a crucial role in integrating a facility with the AWS cloud, facilitating a 40Gbps leased fiber connection from AWS (us-west-2) to downtown San Francisco. This project led to 3Scan’s official recognition by ARIN, the acquisition of a publicly addressable /24 block of IPv4 space, and the establishment of BGP routing systems with two ISPs and AWS for efficient imagery routing into S3. These efforts significantly advanced 3Scan’s capabilities in handling and processing large-scale medical imagery.</p>
+<dt>2013 - 2021</dt>
+<dd>
+<p><strong><a href="http://www.strateos.com"
+target="_blank">Strateos</a> - Director of Infrastructure</strong></p>
+<p>At Strateos, I spearheaded the expansion and modernization of robotic
+cloud drug discovery labs across two continents, growing from one to
+four facilities. My notable contributions include:</p>
+<ul>
+<li>Collaborated with the Product team to create an infrastructure
+roadmap for growth.</li>
+<li>Achieved a 13x reduction in build times by overhauling legacy build
+systems, accelerating feature development.</li>
+<li>Initiated a multi-account AWS configuration using Terraform,
+enhancing workload transfer across regions.</li>
+<li>Led teams in transitioning CI systems to a cloud-native, elastic
+framework and automating CI/CD deployments to Kubernetes, improving
+deployment efficiency.</li>
+<li>Implemented a comprehensive cloud-native observability platform and
+established SSO via Okta for critical systems.</li>
+<li>Designed and implemented a global transit network, optimizing
+multi-region, multi-cluster Kubernetes setups.</li>
+<li>Provided mentorship in architecture, CI/CD, infrastructure, and
+networking, advancing Strateos’s digital cloud lab technology.</li>
+</ul>
 </dd>
 </dl>
 <h2 id="technical-experience">Technical Experience</h2>
 <dl>
 <dt>Software/System Design</dt>
-<dd><p>Production ready systems should be modular, composable, reliable and operation on the principle of least surprise.</p>
+<dd>
+<p>Production ready systems should be modular, composable, reliable and
+operation on the principle of least surprise.</p>
 <p>Extensive experience with the following:</p>
 <ul>
-<li><strong>Build systems</strong>: Bazel, CMake, Gradle, Lerna, Maven, Tox, Poetry</li>
-<li><strong>CI/CD</strong>: ArgoCD, AWS CodePipeline, Buildkite, CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis</li>
-<li><strong>Cloud Infrastructure</strong>: All things compute, networking, storage, security, AI/ML related to AWS or GCP</li>
-<li><strong>Configuration Management</strong>: Ansible, Puppet, Terraform</li>
-<li><strong>Containers/Micro-services</strong>: Docker, ECS, jib, Kubernetes, Lambda, KNative, Kubeless</li>
-<li><strong>Development Environments</strong>: AWS Cloud9, Docker, Eclipse Che, Gitpod, Intellij, Vagrant</li>
-<li><strong>Edge Computing</strong>: Akri, Balena Cloud, ioFog, AWS Greengrass, AWS IOT Core</li>
+<li><strong>Build systems</strong>: Bazel, CMake, Gradle, Lerna, Maven,
+Tox, Poetry</li>
+<li><strong>CI/CD</strong>: ArgoCD, AWS CodePipeline, Buildkite,
+CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis</li>
+<li><strong>Cloud Infrastructure</strong>: All things compute,
+networking, storage, security, AI/ML related to AWS or GCP</li>
+<li><strong>Configuration Management</strong>: Ansible, Puppet,
+Terraform</li>
+<li><strong>Containers/Micro-services</strong>: Docker, ECS, jib,
+Kubernetes, Lambda, KNative, Kubeless</li>
+<li><strong>Development Environments</strong>: AWS Cloud9, Docker,
+Eclipse Che, Gitpod, Intellij, Vagrant</li>
+<li><strong>Edge Computing</strong>: Akri, Balena Cloud, ioFog, AWS
+Greengrass, AWS IOT Core</li>
 <li><strong>Identity Management</strong>: Active Directory, Okta</li>
-<li><strong>IT/Networking</strong>: Managed 3Scan’s AS, BGP peering with multiple ISPs and AWS. Cisco/JunoOS you name it!</li>
-<li><strong>Languages</strong>: Bash, Python, Java, Go, Javascript, .Net, Node, Python, Scala, Typescript</li>
-<li><strong>Observability</strong>: ELK, Grafana, Prometheus, Sumologic, Splunk</li>
-<li><strong>Operating Systems</strong>: At home in any flavor of linux, MacOS and windows</li>
+<li><strong>IT/Networking</strong>: Managed 3Scan’s AS, BGP peering with
+multiple ISPs and AWS. Cisco/JunoOS you name it!</li>
+<li><strong>Languages</strong>: Bash, Python, Java, Go, Javascript,
+.Net, Node, Python, Scala, Typescript</li>
+<li><strong>Observability</strong>: ELK, Grafana, Prometheus, Sumologic,
+Splunk</li>
+<li><strong>Operating Systems</strong>: At home in any flavor of linux,
+MacOS and windows</li>
 <li><strong>Service Mesh</strong>: Consul, Istio, LinkerD</li>
 </ul>
 </dd>
 <dt>Engineering Management</dt>
-<dd><p>Engineering is fundamentally a creative task, and the job of a strong Leader is to maximize people’s ability to get the thing they want to do done.</p>
+<dd>
+<p>Engineering is fundamentally a creative task, and the job of a strong
+Leader is to maximize people’s ability to get the thing they want to do
+done.</p>
 <ul>
-<li><strong>Agile methodologies</strong>: Applied to both software and hardware</li>
-<li><strong>Project management</strong>: From gantt charts and QFDs to task management, OKRs and KPIs</li>
+<li><strong>Agile methodologies</strong>: Applied to both software and
+hardware</li>
+<li><strong>Project management</strong>: From gantt charts and QFDs to
+task management, OKRs and KPIs</li>
 <li>The customer experience is key, dog-fooding is a must</li>
-<li>Have overseen complex multi-disciplinary teams from 2 to 15 engineers</li>
-<li>Deeply enjoy seeding an engineering culture that will meet the future organization needs</li>
+<li>Have overseen complex multi-disciplinary teams from 2 to 15
+engineers</li>
+<li>Deeply enjoy seeding an engineering culture that will meet the
+future organization needs</li>
 </ul>
 </dd>
 </dl>
@@ -146,13 +360,17 @@ Culture Building, Observability, Reliability and Scalability<br />
 <p><strong>BSc, Mechanical Engineering W/ USCG License</strong></p>
 <ul>
 <li><em>California Maritime Academy (Vallejo, CA)</em></li>
-<li><em>Licensed United State Coast Guard 3rd Assistant Engineer</em></li>
+<li><em>Licensed United State Coast Guard 3rd Assistant
+Engineer</em></li>
 </ul>
 <hr />
 <blockquote>
-<p><a href="mailto:contact@geraldhspencer.com" class="email">contact@geraldhspencer.com</a> • +1-408-623-9465<br />
+<p><a href="mailto:contact@geraldhspencer.com"
+class="email">contact@geraldhspencer.com</a> • +1-408-623-9465<br />
 Oakland, California, USA<br />
-<a href="https://github.com/Geethree" target="_blank">Github</a> • <a href="https://www.linkedin.com/in/gerald-spencer-bb2617123/" target="_blank">Linkedin</a></p>
+<a href="https://github.com/Geethree" target="_blank">Github</a> • <a
+href="https://www.linkedin.com/in/gerald-spencer-bb2617123/"
+target="_blank">Linkedin</a></p>
 </blockquote>
 </body>
 </html>
