@@ -1,14 +1,25 @@
 Gerald Spencer
 ============
-> Multi-dimensional engineering leader passionate about:\
-> Culture Building, Observability, Reliability and Scalability\
+> Driving Engineering Innovation:\
+> A Strategic Leader in Crafting High-Reliability Distributed Software
 > <contact@geraldhspencer.com> • +1-408-623-9465
 
 ----
 
 Experience
 ----------
-2022 - Present
+10.2023 - Present
+:   **[Cruise] - Staff Software Engineer**
+
+    In my current role as Staff Software Engineer, I am at the forefront of designing and building a cutting-edge build analytics platform. This platform is focused on optimizing build times Cruise's large monolithic repository and attributing costs effectively across the build graph. Key contributions and ongoing initiatives include:
+
+    - Architecting a comprehensive analytics solution that identifies bottlenecks and inefficiencies in the build graph, targeting a reduction in overall build time by up to 30%.
+    - Implementing a cost attribution model to accurately distribute build costs across teams and projects, enhancing resource allocation and budgeting processes.
+    - Developing a real-time monitoring system that tracks build performance metrics, enabling proactive optimization strategies.
+    - Collaborating closely with development teams to tailor the platform's capabilities to specific needs, ensuring a flexible and user-centric design.
+
+
+2022 - 10.2023
 :   **[Cruise] - Staff Site Reliability Engineer Technical Lead Manager (TLM)**
 
     As Staff Site Reliability Engineer TLM at Cruise, I spearheaded a team of six in designing, implementing and operating Cruise's declarative release and deployment platform. Key achievements include:
@@ -46,33 +57,16 @@ Experience
 Technical Experience
 --------------------
 
-Software/System Design
-:   Production ready systems should be modular, composable, reliable and operation on the principle of least surprise. 
-
-	Extensive experience with the following:
-
-    * **Build systems**: Bazel, CMake, Gradle, Lerna, Maven, Tox, Poetry
-    * **CI/CD**: ArgoCD, AWS CodePipeline, Buildkite, CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis
-    * **Cloud Infrastructure**: All things compute, networking, storage, security, AI/ML related to AWS or GCP
-    * **Configuration Management**: Ansible, Puppet, Terraform
-    * **Containers/Micro-services**: Docker, ECS, jib, Kubernetes, Lambda, KNative, Kubeless
-    * **Development Environments**: AWS Cloud9, Docker, Eclipse Che, Gitpod, Intellij, Vagrant
-    * **Edge Computing**: Akri, Balena Cloud, ioFog, AWS Greengrass, AWS IOT Core
-    * **Identity Management**: Active Directory, Okta
-    * **IT/Networking**: Managed 3Scan's AS, BGP peering with multiple ISPs and AWS. Cisco/JunoOS you name it!
-    * **Languages**: Bash, Python, Java, Go, Javascript, .Net, Node, Python, Scala, Typescript
-    * **Observability**: ELK, Grafana, Prometheus, Sumologic, Splunk
-    * **Operating Systems**: At home in any flavor of linux, MacOS and windows
-    * **Service Mesh**: Consul, Istio, LinkerD
-
-Engineering Management
-:   Engineering is fundamentally a creative task, and the job of a strong Leader is to maximize people's ability to get the thing they want to do done.
-
-    * **Agile methodologies**: Applied to both software and hardware
-    * **Project management**: From gantt charts and QFDs to task management, OKRs and KPIs
-    * The customer experience is key, dog-fooding is a must
-    * Have overseen complex multi-disciplinary teams from 2 to 15 engineers
-    * Deeply enjoy seeding an engineering culture that will meet the future organization needs
+* **Build systems**: Bazel, CMake, Gradle, Lerna, Maven, Poetry, PantsBuild
+* **CI/CD**: ArgoCD, AWS CodePipeline, Buildkite, CircleCI, Jenkins, Github Actions, GoCD, Tekton, Travis
+* **Cloud Infrastructure**: All things compute, networking, storage, security, AI/ML related to AWS or GCP
+* **Configuration Management**: Ansible, Puppet, Terraform
+* **Containers/Micro-services**: Docker, ECS, jib, Kubernetes, Lambda, KNative, Kubeless
+* **Edge Computing**: Akri, Balena Cloud, ioFog, AWS Greengrass, AWS IOT Core
+* **Identity Management**: Active Directory, Okta
+* **Languages**: Bash, Python, Java, Go, Javascript, .Net, Node, Python, Scala, Typescript
+* **Observability**: Datadog, ELK, Grafana, Prometheus, Sumologic, Splunk
+* **Service Mesh**: Consul, Istio, LinkerD
 
 Education
 ---------
