@@ -1,5 +1,6 @@
 ---
 import { identity } from '../site';
+import WebAnalytics from '../components/WebAnalytics.astro';
 import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
 import '@fontsource/inter/latin-600.css';
@@ -57,5 +58,6 @@ const isHome = Astro.url.pathname === '/';
     </footer>
     <script>import '../lib/experiments-menu.js';</script>
     <script>import '../lib/theme-toggle';</script>
+    <WebAnalytics />
   </body>
 </html>
