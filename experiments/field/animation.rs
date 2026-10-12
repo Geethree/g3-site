@@ -12,7 +12,7 @@ type Frame = Rc<RefCell<Option<Closure<dyn FnMut(f64)>>>>;
 pub fn start(
     window: Window,
     document: Document,
-    renderer: Renderer,
+    mut renderer: Renderer,
     state: SharedState,
 ) -> Result<(), JsValue> {
     let frame: Frame = Rc::new(RefCell::new(None));
@@ -25,7 +25,7 @@ pub fn start(
         // returning from an inactive tab doesn't jump the animation forward.
         let delta = ((timestamp - last_frame) / 1000.0).clamp(0.0, 0.05) as f32;
         last_frame = timestamp;
-        if !document.hidden() && !renderer.is_context_lost() {
+        if !document.hidden() && !renderer.is_unavailable() {
             let mut state = state.borrow_mut();
             if !state.paused {
                 state.time += delta;

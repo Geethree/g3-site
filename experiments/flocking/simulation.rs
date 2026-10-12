@@ -1,4 +1,4 @@
-//! Flocking rules. No browser or WebGL code; positions use a world of height 1.
+//! Flocking rules. No browser or graphics API code; positions use a world of height 1.
 #[path = "grid.rs"]
 mod grid;
 #[path = "math.rs"]

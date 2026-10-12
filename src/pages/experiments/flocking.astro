@@ -29,7 +29,10 @@ const sliders = [
   </main>
   <script is:inline type="module">
     if (matchMedia('(max-width: 600px)').matches) document.querySelector('.controls').open = false;
-    import('/experiments/flocking/wasm/flocking.js').then(({ default: init }) => init()).catch(error => {
+    import('/experiments/flocking/wasm/flocking.js').then(async ({ default: init, start }) => {
+      await init();
+      await start();
+    }).catch(error => {
       document.getElementById('status').textContent = `Unable to start: ${error.message || error}`;
     });
   </script>

@@ -16,11 +16,7 @@ pub fn bind(
     bind_keyboard(canvas, state)?;
     bind_buttons(document, state)?;
 
-    let status = element(document, "status")?;
-    listen::<Event>(canvas.as_ref(), "webglcontextlost", move |event| {
-        event.prevent_default();
-        status.set_text_content(Some("Graphics context lost. Reload to restart."));
-    })
+    Ok(())
 }
 
 fn bind_pointer(canvas: &HtmlCanvasElement, state: &SharedState) -> Result<(), JsValue> {

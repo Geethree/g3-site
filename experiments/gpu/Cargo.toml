@@ -1,0 +1,10 @@
+[package]
+name = "experiment-gpu"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wgpu = { version = "=27.0.1", default-features = false, features = ["std", "webgpu", "wgsl"] }
+wasm-bindgen = "=0.2.105"
+wasm-bindgen-futures = "=0.4.55"
+web-sys = { version = "=0.3.82", features = ["Window", "HtmlCanvasElement", "Document", "Element"] }

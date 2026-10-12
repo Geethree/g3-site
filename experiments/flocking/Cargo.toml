@@ -8,6 +8,8 @@ path = "lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
+experiment-gpu = { path = "../gpu" }
+wasm-bindgen-futures = "=0.4.55"
 wasm-bindgen = "=0.2.105"
 js-sys = "=0.3.82"
-web-sys = { version = "=0.3.82", features = ["Window", "Document", "Element", "HtmlElement", "HtmlCanvasElement", "EventTarget", "Event", "PointerEvent", "KeyboardEvent", "DomRect", "MediaQueryList", "WebGl2RenderingContext", "WebGlProgram", "WebGlShader", "WebGlUniformLocation", "WebGlBuffer", "HtmlInputElement"] }
+web-sys = { version = "=0.3.82", features = ["Window", "Document", "Element", "HtmlElement", "HtmlCanvasElement", "EventTarget", "Event", "PointerEvent", "KeyboardEvent", "DomRect", "MediaQueryList", "HtmlInputElement"] }

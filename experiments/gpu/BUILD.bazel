@@ -1,0 +1,2 @@
+# Cargo path dependency; rules_rs generates its Rust target in each crate hub.
+exports_files(["Cargo.toml", "src/lib.rs"])
