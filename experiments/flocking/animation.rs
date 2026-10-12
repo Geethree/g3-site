@@ -9,7 +9,7 @@ pub fn start(
     window: Window,
     document: Document,
     canvas: HtmlCanvasElement,
-    renderer: Renderer,
+    mut renderer: Renderer,
     state: SharedState,
 ) -> Result<(), JsValue> {
     let frame: Frame = Rc::new(RefCell::new(None));
@@ -26,7 +26,7 @@ pub fn start(
             elapsed = 0.0;
             state.clock_reset = false;
         }
-        if document.hidden() || renderer.is_context_lost() {
+        if document.hidden() || renderer.is_unavailable() {
             elapsed = 0.0;
         } else {
             let width = canvas.client_width() as f32 / canvas.client_height().max(1) as f32;
@@ -54,8 +54,7 @@ pub fn start(
                 }
             }
             if state.dirty || renderer.needs_resize(browser.device_pixel_ratio()) {
-                renderer.draw(&state, browser.device_pixel_ratio());
-                state.dirty = false;
+                state.dirty = !renderer.draw(&state, browser.device_pixel_ratio());
                 let mode = if !state.pointer.active {
                     "inactive"
                 } else if state.pointer.attracting {

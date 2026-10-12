@@ -27,6 +27,8 @@ for (const menu of document.querySelectorAll('details.experiments')) {
   });
   menu.addEventListener('focusin', cancel);
   menu.addEventListener('focusout', event => {
-    if (!menu.contains(event.relatedTarget)) close();
+    // Safari can blur the summary before a touch link receives its click.
+    // Pointer dismissal is handled by outside taps and mouse leave instead.
+    if (keyboard && !menu.contains(event.relatedTarget)) close();
   });
 }

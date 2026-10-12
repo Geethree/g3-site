@@ -1,10 +1,5 @@
 //! Pointer and keyboard input use the same world coordinates as the birds.
-use crate::{
-    controls,
-    events::{element, listen},
-    simulation::math::Vec2,
-    state::SharedState,
-};
+use crate::{controls, events::listen, simulation::math::Vec2, state::SharedState};
 use wasm_bindgen::prelude::*;
 use web_sys::{Document, Event, HtmlCanvasElement, KeyboardEvent, PointerEvent};
 
@@ -102,9 +97,5 @@ pub fn bind(
             state.pointer.attracting = false;
         }
     })?;
-    let status = element(document, "status")?;
-    listen::<Event>(canvas.as_ref(), "webglcontextlost", move |event| {
-        event.prevent_default();
-        status.set_text_content(Some("Graphics context lost. Reload to restart."));
-    })
+    Ok(())
 }

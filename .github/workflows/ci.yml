@@ -23,12 +23,12 @@ jobs:
           bazelisk-version: 1.27.0
           bazelisk-cache: true
           repository-cache: true
-      - name: Install local Chromium
+      - name: Install local browsers
         if: env.BUILDBUDDY_API_KEY == ''
         env:
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/playwright-browsers
         run: |
-          bazel run //:playwright -- install --with-deps chromium
+          bazel run //:playwright -- install --with-deps chromium webkit
           echo "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH}" >> "${GITHUB_ENV}"
       - name: Test
         run: bazel test //...

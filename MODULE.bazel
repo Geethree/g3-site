@@ -130,7 +130,7 @@ http_archive(
     urls = ["https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip"],
 )
 
-# Rust owns the WebGL playground; only wasm-bindgen's loader runs in JS.
+# Rust owns the WebGPU experiments; only wasm-bindgen's loader runs in JS.
 bazel_dep(name = "rules_rs", version = "0.1.0")
 
 rust_toolchains = use_extension("@rules_rs//rs/toolchains:module_extension.bzl", "toolchains")

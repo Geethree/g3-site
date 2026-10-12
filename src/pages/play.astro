@@ -16,7 +16,10 @@ import ExperimentLayout from '../layouts/ExperimentLayout.astro';
     <noscript><p class="error">Enable JavaScript to run this experiment.</p></noscript>
   </main>
   <script is:inline type="module">
-    import('/play/wasm/field.js').then(({ default: init }) => init()).catch(error => {
+    import('/play/wasm/field.js').then(async ({ default: init, start }) => {
+      await init();
+      await start();
+    }).catch(error => {
       document.getElementById('status').textContent = `Unable to start: ${error.message || error}`;
     });
   </script>

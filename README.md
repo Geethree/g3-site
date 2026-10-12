@@ -26,11 +26,11 @@ build --remote_header=x-buildbuddy-api-key=YOUR_API_KEY
 
 Shared settings live in `bazel/rc`. Builds/tests execute on Linux with minimal downloads; `run` uses the host launcher and downloads its outputs. Materialization patterns retain the site, diagnostics, résumé, and screenshots.
 
-RBE includes Chromium. For local tests without RBE:
+RBE includes Chromium and WebKit. Browser tests use Chromium with WebGPU and SwiftShader. On Linux they start Xvfb when `DISPLAY` is unset; Playwright’s `--with-deps` installs it for local runs. For local tests without RBE:
 
 ```sh
 export PLAYWRIGHT_BROWSERS_PATH="$HOME/.cache/ms-playwright"
-bazel run //:playwright -- install chromium # Linux may need --with-deps
+bazel run //:playwright -- install chromium webkit # Linux may need --with-deps
 bazel test //...
 ```
 
@@ -42,7 +42,7 @@ Leave `PLAYWRIGHT_BROWSERS_PATH` unset for RBE. Keep the Playwright package and 
 - Projects: `content/works/<slug>/index.md`, with photos in `images/`. Front matter requires `title` and `date`; use `cover`, `coverAlt`, `draft`, `featured`, and `featuredOrder` as needed. Schema: `src/content.config.ts`.
 - Identity: `src/site.ts`; domain: `astro.config.mjs` and `public/CNAME`.
 - Résumé: `resume/gerald-spencer.typ`; included in the site at `/gerald-spencer.pdf`.
-- Experiments: `experiments/`; see [field README](experiments/field/README.md).
+- Experiments: `experiments/`; see [field README](experiments/field/README.md) and [shared WebGPU support](experiments/gpu/README.md). WebGPU requires HTTPS or localhost and a supported browser/device.
 
 ## CI and publishing
 

@@ -2,6 +2,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { once } from 'node:events';
+import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -10,14 +11,43 @@ import { startServer } from '../bazel/tools/serve.mjs';
 if (!process.env.PLAYWRIGHT_BROWSERS_PATH && existsSync('/ms-playwright')) {
   process.env.PLAYWRIGHT_BROWSERS_PATH = '/ms-playwright';
 }
-const { chromium } = await import('playwright');
-
-let browser, server, base;
-async function newContext(options) {
-  const context = await browser.newContext(options);
-  // Keep browser checks independent of Cloudflare and out of production analytics.
-  await context.route('https://static.cloudflareinsights.com/beacon.min.js', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
+const { chromium, webkit, devices } = await import('playwright');
+// Analytics is external to the site behavior under test.
+async function testContext(options, engine = browser) {
+  const context = await engine.newContext(options);
+  context.setDefaultTimeout(8000);
+  context.on('page', page => page.on('console', message => {
+    if (message.type() === 'warning' && message.text().startsWith('WebGPU device lost:')) console.log(message.text());
+  }));
+  await context.addInitScript(() => {
+    if (!globalThis.GPUAdapter) return;
+    const requestDevice = GPUAdapter.prototype.requestDevice;
+    GPUAdapter.prototype.requestDevice = async function (...args) {
+      const device = await requestDevice.apply(this, args);
+      device.lost.then(info => console.warn('WebGPU device lost:', info.reason, info.message));
+      return device;
+    };
+  });
+  await context.route('https://static.cloudflareinsights.com/**', route => route.fulfill({ body: '', contentType: 'application/javascript' }));
   return context;
+}
+
+let browser, webkitBrowser, server, base, display;
+async function startDisplay() {
+  if (process.platform !== 'linux' || process.env.DISPLAY) return;
+  // WebGPU canvas presentation needs an X display and Vulkan compositing in CI.
+  display = spawn('Xvfb', ['-displayfd', '1', '-screen', '0', '1920x1080x24', '-nolisten', 'tcp'], { stdio: ['ignore', 'pipe', 'pipe'] });
+  const number = await new Promise((resolve, reject) => {
+    let output = '';
+    display.stdout.on('data', data => {
+      output += data;
+      if (output.includes('\n')) resolve(output.trim());
+    });
+    display.once('error', reject);
+    display.once('exit', code => reject(new Error(`Xvfb exited with code ${code}`)));
+    display.stderr.on('data', data => process.stderr.write(data));
+  });
+  process.env.DISPLAY = `:${number}`;
 }
 async function assertFitsViewport(page) {
   const overflow = await page.evaluate(() => {
@@ -43,10 +73,20 @@ before(async () => {
   server = startServer('site_dist', { port: 0 });
   await once(server, 'listening');
   base = `http://127.0.0.1:${server.address().port}`;
-  browser = await chromium.launch();
+  await startDisplay();
+  browser = await chromium.launch({ channel: 'chromium', args: process.platform === 'linux'
+    ? ['--enable-unsafe-webgpu', '--enable-gpu', '--ignore-gpu-blocklist', '--enable-features=Vulkan', '--use-vulkan=swiftshader', '--use-webgpu-adapter=swiftshader', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader']
+    : ['--enable-unsafe-webgpu', '--enable-gpu'] });
+  webkitBrowser = await webkit.launch();
 });
 after(async () => {
   await browser?.close();
+  await webkitBrowser?.close();
+  if (display && display.exitCode === null) {
+    const stopped = once(display, 'exit');
+    display.kill();
+    await stopped;
+  }
   server?.closeAllConnections();
   if (server) await new Promise(resolve => server.close(resolve));
 });
@@ -54,7 +94,7 @@ after(async () => {
 for (const colorScheme of ['light', 'dark']) {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     test(`${colorScheme}, ${viewport.width}px: hydration, navigation, and image viewer`, async () => {
-      const context = await newContext({ colorScheme, reducedMotion: 'reduce', viewport });
+      const context = await testContext({ colorScheme, reducedMotion: 'reduce', viewport });
       const page = await context.newPage();
       page.setDefaultTimeout(8000);
       const errors = [];
@@ -103,7 +143,7 @@ for (const colorScheme of ['light', 'dark']) {
 
 for (const colorScheme of ['light', 'dark']) {
   test(`theme toggle starts from ${colorScheme}, overrides system changes, and resets on load`, async () => {
-    const context = await newContext({ colorScheme });
+    const context = await testContext({ colorScheme });
     const page = await context.newPage();
     const opposite = colorScheme === 'light' ? 'dark' : 'light';
     const assertTheme = async theme => {
@@ -134,7 +174,7 @@ for (const colorScheme of ['light', 'dark']) {
 }
 
 test('navigation, photos, and content work without JavaScript', async () => {
-  const context = await newContext({ javaScriptEnabled: false });
+  const context = await testContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -155,7 +195,7 @@ test('navigation, photos, and content work without JavaScript', async () => {
 });
 
 test('homepage rotates three unique projects on reload without hydration errors', async () => {
-  const context = await newContext();
+  const context = await testContext();
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -181,7 +221,7 @@ test('homepage rotates three unique projects on reload without hydration errors'
 });
 
 test('homepage selection works when browser storage is unavailable', async () => {
-  const context = await newContext();
+  const context = await testContext();
   await context.addInitScript(() => {
     Storage.prototype.getItem = Storage.prototype.setItem = () => { throw new DOMException('Storage unavailable', 'SecurityError'); };
   });
@@ -197,7 +237,7 @@ test('homepage selection works when browser storage is unavailable', async () =>
 });
 
 test('navigation fits a narrow mobile screen', async () => {
-  const context = await newContext({ viewport: { width: 320, height: 640 } });
+  const context = await testContext({ viewport: { width: 320, height: 640 } });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -215,8 +255,8 @@ test('navigation fits a narrow mobile screen', async () => {
 });
 
 for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
-  test(`Rust WebGL field, ${viewport.width}px: rendering and controls`, async () => {
-    const context = await newContext({ viewport, reducedMotion: 'reduce' });
+  test(`Rust WebGPU field, ${viewport.width}px: rendering and controls`, async () => {
+    const context = await testContext({ viewport, reducedMotion: 'reduce' });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -224,6 +264,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
       await page.goto(base + '/play/');
       const canvas = page.locator('#field[data-ready="true"]');
       await canvas.waitFor();
+      assert.equal(await canvas.evaluate(element => element.getContext('webgpu') instanceof GPUCanvasContext), true, 'experiment uses WebGPU');
       await page.waitForFunction(() => document.querySelector('canvas').width === Math.round(innerWidth * Math.min(devicePixelRatio, 2)));
       await assertFitsViewport(page);
       assert.equal(await page.locator('#status').textContent(), '');
@@ -257,7 +298,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
 }
 
 test('Experiments dropdown: hover, gap, dismissal, and keyboard focus', async () => {
-  const context = await newContext();
+  const context = await testContext();
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -307,7 +348,7 @@ test('Experiments dropdown: hover, gap, dismissal, and keyboard focus', async ()
 });
 
 test('Experiments dropdown: touch toggling and outside tap', async () => {
-  const context = await newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  const context = await testContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -325,9 +366,30 @@ test('Experiments dropdown: touch toggling and outside tap', async () => {
   } finally { await context.close(); }
 });
 
+// Navigation must work even when the destination browser has no WebGPU adapter.
+for (const [engine, device] of [['webkit', 'iPhone 13'], ['chromium', 'Pixel 5']]) {
+  for (const [label, route, canvas] of [['Field', '/play/', 'field'], ['Flocking', '/experiments/flocking/', 'flock']]) {
+    test(`${engine} touch: ${label} link navigates from the dropdown`, async () => {
+      const context = await testContext(devices[device], engine === 'webkit' ? webkitBrowser : browser);
+      const page = await context.newPage();
+      try {
+        for (const source of ['/', '/about/']) {
+          await page.goto(base + source);
+          const menu = page.locator('details.experiments');
+          await menu.locator('summary').tap();
+          assert.equal(await menu.evaluate(element => element.open), true);
+          await page.getByRole('link', { name: label, exact: true }).tap();
+          await page.waitForURL(base + route);
+          assert.equal(await page.locator('canvas').getAttribute('id'), canvas);
+        }
+      } finally { await context.close(); }
+    });
+  }
+}
+
 for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
   test(`Rust flock, ${viewport.width}px: sliders, input, pause, reset, and resize`, async () => {
-    const context = await newContext({ viewport, reducedMotion: 'reduce' });
+    const context = await testContext({ viewport, reducedMotion: 'reduce' });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -335,6 +397,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
       await page.goto(base + '/experiments/flocking/');
       const canvas = page.locator('#flock[data-ready="true"]');
       await canvas.waitFor();
+      assert.equal(await canvas.evaluate(element => element.getContext('webgpu') instanceof GPUCanvasContext), true, 'experiment uses WebGPU');
       await page.waitForFunction(() => document.querySelector('#flock').dataset.count === '300');
       await assertFitsViewport(page);
       assert.equal(await page.locator('#status').textContent(), '');
@@ -393,7 +456,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
 }
 
 test('flock touch release removes attraction', async () => {
-  const context = await newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const context = await testContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
   try {
     await page.goto(base + '/experiments/flocking/');
@@ -407,3 +470,57 @@ test('flock touch release removes attraction', async () => {
     await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'inactive');
   } finally { await context.close(); }
 });
+
+for (const route of ['/play/', '/experiments/flocking/']) {
+  test(`${route}: unavailable WebGPU reports an initialization error`, async () => {
+    const context = await testContext();
+    await context.addInitScript(() => {
+      Object.defineProperty(navigator, 'gpu', { value: undefined });
+    });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    try {
+      await page.goto(base + route);
+      await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('Unable to start:'));
+      assert.match(await page.locator('#status').textContent(), /WebGPU/i);
+      assert.equal(await page.locator('canvas').getAttribute('data-ready'), null);
+      assert.deepEqual(errors, []);
+    } finally { await context.close(); }
+  });
+}
+
+for (const route of ['/play/', '/experiments/flocking/']) {
+  test(`${route}: WebGPU resize and device loss`, async () => {
+    const context = await testContext({ viewport: { width: 900, height: 700 } });
+    await context.addInitScript(() => {
+      const requestDevice = GPUAdapter.prototype.requestDevice;
+      GPUAdapter.prototype.requestDevice = async function (...args) {
+        const device = await requestDevice.apply(this, args);
+        window.experimentDevice = device;
+        return device;
+      };
+    });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    try {
+      await page.goto(base + route);
+      await page.locator('canvas[data-ready="true"]').waitFor();
+      await page.setViewportSize({ width: 640, height: 480 });
+      await page.waitForFunction(() => {
+        const canvas = document.querySelector('canvas');
+        return canvas.width === Math.round(innerWidth * Math.min(devicePixelRatio, 2))
+          && canvas.height === Math.round(innerHeight * Math.min(devicePixelRatio, 2));
+      });
+      await page.evaluate(() => window.experimentDevice.destroy());
+      await page.waitForFunction(() => document.querySelector('#status').textContent.includes('Graphics device lost'));
+      if (route.includes('flocking')) {
+        const steps = await page.locator('canvas').getAttribute('data-steps');
+        await page.waitForTimeout(150);
+        assert.equal(await page.locator('canvas').getAttribute('data-steps'), steps, 'device loss stops simulation');
+      }
+      assert.deepEqual(errors, []);
+    } finally { await context.close(); }
+  });
+}

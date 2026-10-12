@@ -8,7 +8,7 @@ exports_files(["Cargo.toml", "Cargo.lock"])
 rust_shared_library(
     name = "field",
     srcs = ["lib.rs", "animation.rs", "input.rs", "renderer.rs", "state.rs"],
-    compile_data = ["field.vert", "field.frag"],
+    compile_data = ["field.wgsl"],
     edition = "2024",
     deps = all_crate_deps(normal = True),
     platform = "@rules_rs//rs/platforms:wasm32-unknown-unknown",
