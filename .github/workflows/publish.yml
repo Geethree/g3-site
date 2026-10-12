@@ -9,13 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  ci:
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-    uses: ./.github/workflows/ci.yml
-    secrets: inherit
-
   build:
-    needs: ci
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -28,11 +23,11 @@ jobs:
           bazelisk-cache: true
           repository-cache: true
       - name: Export site
-        run: bazel run //:export -- --output site-pages-output
+        run: bazel run //:export -- --output "$RUNNER_TEMP/site-pages-output"
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site-pages-output
+          path: ${{ runner.temp }}/site-pages-output
 
   deploy:
     needs: build

@@ -46,7 +46,7 @@ Leave `PLAYWRIGHT_BROWSERS_PATH` unset for RBE. Keep the Playwright package and 
 
 ## CI and publishing
 
-`ci.yml` runs all tests on Linux for PRs. `publish.yml` reuses CI, then exports and deploys default-branch pushes (`master`) to GitHub Pages. Pages must use the **GitHub Actions** publishing source.
+`ci.yml` runs all tests on Linux for PRs. `publish.yml` exports and deploys default-branch pushes (`master`) to GitHub Pages without running tests. Pages must use the **GitHub Actions** publishing source.
 
 Set the Actions secret `BUILDBUDDY_API_KEY`. `tools/bazel` adds CI configuration and authentication when `CI=true`. PRs without the secret install Chromium and test locally.
 
