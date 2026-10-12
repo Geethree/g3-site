@@ -73,14 +73,8 @@ _BINARIES = {
 }
 
 def _binary_impl(rctx):
-    host_os = rctx.os.name.lower()
-    os = "macos" if "mac" in host_os else "windows" if "windows" in host_os else "linux" if "linux" in host_os else None
-    if not os:
-        fail("No pinned Typst executable for host " + host_os)
-    arch = {"arm64": "aarch64", "amd64": "x86_64"}.get(rctx.os.arch, rctx.os.arch)
-    platform = os + "-" + arch
-    if platform not in _BINARIES:
-        fail("No pinned Typst executable for host " + platform)
+    platform = rctx.attr.platform
+    os = platform.split("-")[0]
     distribution, checksum = _BINARIES[platform]
     archive = "zip" if os == "windows" else "tar.xz"
     rctx.download_and_extract(
@@ -91,7 +85,26 @@ def _binary_impl(rctx):
     executable = "typst.exe" if os == "windows" else "typst"
     rctx.file("BUILD.bazel", 'exports_files(["{}"], visibility = ["//visibility:public"])\nalias(name = "typst", actual = ":{}", visibility = ["//visibility:public"])\n'.format(executable, executable) if os == "windows" else 'exports_files(["typst"], visibility = ["//visibility:public"])\n')
 
-typst_binary_repository = repository_rule(implementation = _binary_impl, configure = True)
+typst_binary_repository = repository_rule(
+    implementation = _binary_impl,
+    attrs = {"platform": attr.string(mandatory = True, values = sorted(_BINARIES))},
+)
+
+def register_typst_toolchains():
+    for platform in sorted(_BINARIES):
+        os, arch = platform.split("-")
+        cpu = "arm64" if arch == "aarch64" else arch
+        name = "typst_" + platform.replace("-", "_")
+        typst_toolchain(
+            name = name + "_impl",
+            typst = "@typst_binary_{}//:typst".format(platform.replace("-", "_")),
+        )
+        native.toolchain(
+            name = name + "_toolchain",
+            toolchain = ":" + name + "_impl",
+            toolchain_type = ":typst_toolchain_type",
+            exec_compatible_with = ["@platforms//os:" + os, "@platforms//cpu:" + cpu],
+        )
 
 def _packages_impl(rctx):
     for name, version, checksum in zip(rctx.attr.names, rctx.attr.versions, rctx.attr.checksums):

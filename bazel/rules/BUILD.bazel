@@ -1,4 +1,4 @@
-load(":typst.bzl", "typst_toolchain")
+load(":typst.bzl", "register_typst_toolchains")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -10,13 +10,4 @@ exports_files([
 
 toolchain_type(name = "typst_toolchain_type")
 
-typst_toolchain(
-    name = "typst_impl",
-    typst = "@typst_binary//:typst",
-)
-
-toolchain(
-    name = "typst_toolchain",
-    toolchain = ":typst_impl",
-    toolchain_type = ":typst_toolchain_type",
-)
+register_typst_toolchains()

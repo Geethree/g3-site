@@ -7,3 +7,5 @@ astro_cache/
 astro_site/
 dist/
 **/target
+.bazelrc.user
+docs/

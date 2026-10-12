@@ -1,0 +1,2 @@
+build:ci --config=rbe
+build:ci --build_metadata=ROLE=CI
