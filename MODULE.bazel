@@ -131,14 +131,7 @@ http_archive(
 )
 
 # Rust owns the WebGL playground; only wasm-bindgen's loader runs in JS.
-bazel_dep(name = "rules_rs", version = "0.0.107")
-
-# Backport stable zlib URLs from hermeticbuild/rules_rs commit 8133604.
-single_version_override(
-    module_name = "rules_rs",
-    patch_strip = 1,
-    patches = ["//bazel/patches:rules_rs_zlib_snapshot.patch"],
-)
+bazel_dep(name = "rules_rs", version = "0.1.0")
 
 rust_toolchains = use_extension("@rules_rs//rs/toolchains:module_extension.bzl", "toolchains")
 rust_toolchains.toolchain(
