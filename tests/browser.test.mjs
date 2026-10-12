@@ -90,6 +90,38 @@ for (const colorScheme of ['light', 'dark']) {
   }
 }
 
+for (const colorScheme of ['light', 'dark']) {
+  test(`theme toggle starts from ${colorScheme}, overrides system changes, and resets on load`, async () => {
+    const context = await browser.newContext({ colorScheme });
+    const page = await context.newPage();
+    const opposite = colorScheme === 'light' ? 'dark' : 'light';
+    const assertTheme = async theme => {
+      await page.getByRole('button', { name: `Switch to ${theme === 'light' ? 'dark' : 'light'} mode` }).waitFor();
+      assert.equal(await page.locator('html').evaluate(element => getComputedStyle(element).colorScheme), theme);
+      assert.equal(await page.locator('body').evaluate(element => getComputedStyle(element).backgroundColor), theme === 'light' ? 'rgb(248, 247, 244)' : 'rgb(24, 27, 24)');
+      assert.equal(await page.locator(`.theme-${theme === 'light' ? 'moon' : 'sun'}`).isVisible(), true);
+    };
+    try {
+      await page.goto(base + '/');
+      await assertTheme(colorScheme);
+      await page.emulateMedia({ colorScheme: opposite });
+      await assertTheme(opposite);
+      await page.locator('.theme-toggle').focus();
+      await page.keyboard.press('Enter');
+      await assertTheme(colorScheme);
+      await page.emulateMedia({ colorScheme });
+      await page.emulateMedia({ colorScheme: opposite });
+      await assertTheme(colorScheme);
+      await page.reload();
+      await assertTheme(opposite);
+      await page.locator('.theme-toggle').click();
+      await assertTheme(colorScheme);
+      await page.getByRole('link', { name: 'About', exact: true }).click();
+      await assertTheme(opposite);
+    } finally { await context.close(); }
+  });
+}
+
 test('navigation, photos, and content work without JavaScript', async () => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();

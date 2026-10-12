@@ -11,8 +11,10 @@
   -webkit-font-smoothing: antialiased;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --background: #181b18; --text: #e9eae3; --muted: #a1a69b; --line: #373d34; --accent: #b3c79a; --surface: #252b23; }
+  :root:not([data-theme="light"]) { color-scheme: dark; --background: #181b18; --text: #e9eae3; --muted: #a1a69b; --line: #373d34; --accent: #b3c79a; --surface: #252b23; }
 }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; --background: #181b18; --text: #e9eae3; --muted: #a1a69b; --line: #373d34; --accent: #b3c79a; --surface: #252b23; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--background); color: var(--text); }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
@@ -27,7 +29,14 @@ h1, h2, h3, p { margin: 0; }
 .home-header { justify-content: flex-end; }
 .wordmark { font-weight: 600; font-size: 17px; letter-spacing: -.5px; text-decoration: none; }
 .brand-dot { color: var(--accent); }
-nav { display: flex; gap: 32px; }
+nav { display: flex; align-items: center; gap: 32px; }
+.theme-toggle { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; padding: 10px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { color: var(--text); background: var(--surface); }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .theme-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .theme-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .theme-moon { display: none; }
 nav a, .experiments summary { font-size: 14px; text-decoration: none; padding-block: 10px; color: var(--muted); }
 .experiments { position: relative; }
 .experiments summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 7px; }
@@ -104,7 +113,7 @@ h1 { font-size: clamp(38px, 4.8vw, 64px); font-weight: 500; letter-spacing: -.05
 @media (max-width: 700px) {
   .site-header, main, .site-footer { width: calc(100% - 40px); }
   .site-header { height: 84px; }
-  nav { gap: 14px; }
+  nav { gap: 10px; }
   nav a, .experiments summary { font-size: 12px; }
   .wordmark { font-size: 15px; }
   .introduction { grid-template-columns: 1fr; gap: 28px; padding: 62px 0 54px; }
