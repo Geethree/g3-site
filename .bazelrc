@@ -1,0 +1,11 @@
+common --enable_platform_specific_config
+common --repo_env=DO_NOT_TRACK=1
+common --repo_env=BAZEL_MACOS_USE_HOST_SDK=0
+build --host_platform=@site_host//:host
+build --platforms=@site_host//:host
+build --remote_executor=
+build --remote_cache=
+build:linux --spawn_strategy=sandboxed,local
+build:macos --spawn_strategy=sandboxed,local
+build:windows --spawn_strategy=local
+test --test_output=errors

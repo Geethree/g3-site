@@ -1,0 +1,87 @@
+module(name = "g3_site")
+
+bazel_dep(name = "llvm", version = "0.8.24")
+bazel_dep(name = "platforms", version = "1.1.0")
+bazel_dep(name = "rules_cc", version = "0.2.25")
+bazel_dep(name = "aspect_rules_js", version = "3.5.0")
+bazel_dep(name = "aspect_rules_ts", version = "3.10.1")
+bazel_dep(name = "rules_nodejs", version = "6.7.5")
+bazel_dep(name = "bazel_lib", version = "3.7.2")
+
+register_toolchains("@llvm//toolchain:all")
+
+host = use_repo_rule("//bazel/platforms:repositories.bzl", "host_platform")
+
+host(name = "site_host")
+
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+node.toolchain(node_version_from_nvmrc = ".nvmrc")
+use_repo(node, "nodejs_toolchains")
+
+linux_node = use_repo_rule("//bazel/platforms:node.bzl", "linux_node_repository")
+
+linux_node(
+    name = "site_node_linux_x64",
+    arch = "x64",
+    version_file = "//:.nvmrc",
+)
+
+linux_node(
+    name = "site_node_linux_arm64",
+    arch = "arm64",
+    version_file = "//:.nvmrc",
+)
+
+override_repo(
+    node,
+    nodejs_linux_amd64 = "site_node_linux_x64",
+    nodejs_linux_arm64 = "site_node_linux_arm64",
+)
+
+pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm")
+pnpm.pnpm(pnpm_version_from = "//:package.json")
+use_repo(pnpm, "pnpm")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "npm",
+    data = [
+        "//:package.json",
+        "//:pnpm-workspace.yaml",
+    ],
+    lifecycle_hooks = {},
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+use_repo(npm, "npm")
+
+typescript = use_extension("@aspect_rules_ts//ts:extensions.bzl", "typescript")
+typescript.deps(version_from = "@npm//:typescript/resolved.json")
+use_repo(typescript, "npm_typescript")
+
+typst_binary = use_repo_rule("//bazel/rules:typst.bzl", "typst_binary_repository")
+
+typst_binary(name = "typst_binary")
+
+register_toolchains("//bazel/rules:typst_toolchain")
+
+typst = use_extension("//bazel/rules:typst.bzl", "typst")
+typst.package(
+    name = "basic-resume",
+    sha256 = "d607771e86bacc2341afb29f900a17458922fd23c1d48a2ed344b280a92514e2",
+    version = "0.2.9",
+)
+typst.package(
+    name = "scienceicons",
+    sha256 = "05d9972ee076acc0c7282ab700e8a8e5dac39cbdd0e596df68a450997f895599",
+    version = "0.1.0",
+)
+use_repo(typst, "typst_packages")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "resume_fonts",
+    build_file_content = "filegroup(name = \"fonts\", srcs = [\"extras/ttf/Inter-Regular.ttf\", \"extras/ttf/Inter-Bold.ttf\", \"extras/ttf/Inter-Italic.ttf\", \"extras/ttf/Inter-BoldItalic.ttf\"], visibility = [\"//visibility:public\"])\n",
+    sha256 = "9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e",
+    urls = ["https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip"],
+)

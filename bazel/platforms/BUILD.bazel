@@ -1,0 +1,12 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "llvm_test",
+    size = "small",
+    srcs = ["llvm_test.cc"],
+)
+
+exports_files([
+    "repositories.bzl",
+    "node.bzl",
+])

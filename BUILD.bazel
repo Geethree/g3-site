@@ -1,0 +1,18 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//bazel/rules:site.bzl", "portfolio_site")
+
+npm_link_all_packages()
+
+exports_files([
+    ".nvmrc",
+    "package.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+])
+
+portfolio_site()
+
+alias(
+    name = "resume",
+    actual = "//resume:pdf",
+)

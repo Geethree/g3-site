@@ -1,0 +1,10 @@
+load("//bazel/rules:typst.bzl", "typst_document")
+
+typst_document(
+    name = "pdf",
+    src = "gerald-spencer.typ",
+    out = "gerald-spencer.pdf",
+    fonts = ["@resume_fonts//:fonts"],
+    packages = ["@typst_packages//packages:packages"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,21 @@
+---
+import { render } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ImageViewer from '../../components/ImageViewer';
+import { getProjects } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  return (await getProjects()).map(({ entry, project }) => ({ params: { slug: entry.id }, props: { entry, project } }));
+}
+const { entry, project } = Astro.props;
+const { Content } = await render(entry);
+---
+<SiteLayout title={project.name} section="works" cover={project.cover?.src}>
+  <div class="page-heading project-heading">
+    <a href="/works/" class="back-link">← Works</a>
+    <h1>{project.name}</h1>
+    <p class="page-meta">{project.year}{project.event && ` · ${project.event}`}</p>
+  </div>
+  <div class="prose project-prose"><Content /></div>
+  <ImageViewer client:load />
+</SiteLayout>

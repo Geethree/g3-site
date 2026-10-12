@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SelectedWorks from '../components/SelectedWorks';
+import { identity } from '../site';
+import { getProjects, getFeaturedProjects } from '../lib/projects';
+
+const projects = (await getProjects()).map(({ project }) => project);
+const featured = await getFeaturedProjects();
+---
+<SiteLayout cover={featured[0]?.cover?.src}>
+  <section class="introduction">
+    <h1>{identity.name}</h1>
+    <div class="intro-details">
+      <p class="role">{identity.role}</p>
+      <p class="intro-summary">I work on compute platforms for chip design and lighting systems for public art.</p>
+    </div>
+  </section>
+  <section aria-labelledby="selected-heading" class="selected-work">
+    <div class="section-heading"><h2 id="selected-heading">Selected works</h2><a href="/works/">All works <span aria-hidden="true">↗</span></a></div>
+    <SelectedWorks projects={projects} featured={featured} client:load />
+  </section>
+</SiteLayout>

@@ -1,0 +1,22 @@
+load(":typst.bzl", "typst_toolchain")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "site.bzl",
+    "typst.bzl",
+    "package-cache-disabled",
+])
+
+toolchain_type(name = "typst_toolchain_type")
+
+typst_toolchain(
+    name = "typst_impl",
+    typst = "@typst_binary//:typst",
+)
+
+toolchain(
+    name = "typst_toolchain",
+    toolchain = ":typst_impl",
+    toolchain_type = ":typst_toolchain_type",
+)

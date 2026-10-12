@@ -1,0 +1,11 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import WorkCard from '../../components/WorkCard';
+import { getProjects } from '../../lib/projects';
+
+const projects = await getProjects();
+---
+<SiteLayout title="Works" section="works" cover={projects[0]?.project.cover?.src}>
+  <div class="page-heading"><h1>Works</h1></div>
+  <div class="works-grid">{projects.map(({ project }, index) => <WorkCard project={project} priority={index === 0} />)}</div>
+</SiteLayout>

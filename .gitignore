@@ -1,0 +1,8 @@
+node_modules/
+bazel-*
+.DS_Store
+test-results/
+.astro/
+astro_cache/
+astro_site/
+dist/

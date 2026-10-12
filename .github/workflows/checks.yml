@@ -1,0 +1,42 @@
+name: Site checks
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm, macos-15-intel, macos-15, windows-2025, windows-11-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Install Bazelisk
+        run: npm install --global @bazel/bazelisk@1.27.0
+      - name: Build and test locally
+        run: bazel test //:tests
+      - name: Verify export
+        run: bazel run //:export -- --output site-check-output
+
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global @bazel/bazelisk@1.27.0
+      - run: bazel run //:playwright -- install --with-deps chromium
+      - run: bazel run //:browser_checks

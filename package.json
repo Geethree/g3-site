@@ -1,0 +1,25 @@
+{
+  "name": "g3-site",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.15.1",
+  "dependencies": {
+    "@astrojs/markdown-remark": "7.3.2",
+    "@astrojs/react": "7.0.1",
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource/inter": "5.2.5",
+    "astro": "7.3.8",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "rehype-raw": "7.0.0",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "playwright": "1.55.1",
+    "@types/node": "22.15.30",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3",
+    "@astrojs/check": "0.9.10"
+  }
+}
