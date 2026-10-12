@@ -97,10 +97,10 @@ def portfolio_site():
 
     copy_to_directory(
         name = "assembled_site",
-        srcs = [":astro_build", ":images", "//resume:pdf", "//experiments/field:web"],
+        srcs = [":astro_build", ":images", "//resume:pdf", "//experiments/field:web", "//experiments/flocking:web"],
         out = "assembled_site",
         root_paths = ["astro_site", "processed_images", "resume"],
-        replace_prefixes = {"experiments/field/web/": "play/wasm/"},
+        replace_prefixes = {"experiments/field/web/": "play/wasm/", "experiments/flocking/web/": "experiments/flocking/wasm/"},
         exclude_srcs_patterns = ["astro_cache/**", ".astro/**", "**/images.json"],
     )
 
@@ -174,5 +174,5 @@ def portfolio_site():
 
     native.test_suite(
         name = "tests",
-        tests = [":pipeline_test", "//bazel/platforms:llvm_test"],
+        tests = [":pipeline_test", "//bazel/platforms:llvm_test", "//experiments/flocking:simulation_test"],
     )

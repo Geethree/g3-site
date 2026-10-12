@@ -42,7 +42,7 @@ const isHome = Astro.url.pathname === '/';
         <a href="/gerald-spencer.pdf">Resume</a>
         <details class="experiments">
           <summary>Experiments</summary>
-          <div class="experiments-menu"><a href="/play/">Field</a></div>
+          <div class="experiments-menu"><a href="/play/">Field</a><a href="/experiments/flocking/">Flocking</a></div>
         </details>
       </nav>
     </header>
@@ -51,5 +51,6 @@ const isHome = Astro.url.pathname === '/';
       <span>{identity.name}</span>
       <div><a href={identity.github}>GitHub</a><a href={identity.linkedin}>LinkedIn</a><a href={`mailto:${identity.email}`}>Email</a></div>
     </footer>
+    <script>import '../lib/experiments-menu.js';</script>
   </body>
 </html>

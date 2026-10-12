@@ -37,6 +37,8 @@ nav a, .experiments summary { font-size: 14px; text-decoration: none; padding-bl
 .experiments summary:hover { color: var(--accent); }
 .experiments summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 .experiments-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 150px; padding: 6px; background: var(--background); border: 1px solid var(--line); z-index: 20; }
+/* Fill the gap so hover stays inside the dropdown on the way to a link. */
+.experiments-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -9px; height: 9px; }
 .experiments-menu a { display: block; padding: 10px 12px; }
 .experiments-menu a:hover { background: var(--surface); }
 nav a[aria-current] { color: var(--text); text-decoration: underline; }

@@ -15,7 +15,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <a class="skip-link" href="#main">Skip to field</a>
     <main id="main" tabindex="-1">
       <canvas id="field" tabindex="0" aria-label="Interactive luminous field. Move to bend the strands; click or touch to send a pulse. Keyboard: arrow keys to bend, Enter to pulse."></canvas>
-      <header><a href="/" aria-label="Home">G3<span>.</span></a><span>Field</span></header>
+      <header><a href="/" aria-label="Home">G3<span>.</span></a><div class="experiment-links"><span>Field</span><a href="https://github.com/Geethree/g3-site/tree/master/experiments/field" aria-label="Field source on GitHub">GitHub</a></div></header>
       <div class="controls" role="group" aria-label="Field controls">
         <button id="pause" type="button" aria-pressed="false">Pause</button>
         <button id="color" type="button">Color</button>
@@ -39,7 +39,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   header { position: absolute; top: 28px; left: 32px; right: 32px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
   header a { color: #eef3fb; text-decoration: none; font-size: 24px; font-weight: 650; letter-spacing: -1px; pointer-events: auto; }
   header a span { color: #79e3dd; }
-  header > span { color: #91a0b5; }
+  header .experiment-links { display: flex; align-items: center; gap: 20px; color: #91a0b5; }
+  header .experiment-links a { color: inherit; font-size: 13px; font-weight: 400; letter-spacing: normal; }
+  header .experiment-links a:hover { color: #79e3dd; }
   .controls { position: absolute; bottom: 30px; right: 32px; display: flex; gap: 6px; }
   button { background: #0c1222d9; color: #c8d5e8; border: 1px solid #263044; border-radius: 6px; padding: 10px 15px; cursor: pointer; font: inherit; }
   button:hover { background: #1b2740; }

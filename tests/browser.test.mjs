@@ -164,7 +164,7 @@ test('navigation fits a narrow mobile screen', async () => {
     const wordmark = await page.locator('.wordmark').boundingBox();
     const navigation = await page.locator('nav').boundingBox();
     assert.ok(wordmark.x + wordmark.width <= navigation.x || wordmark.y + wordmark.height <= navigation.y, 'name and navigation overlap');
-    await page.locator('.experiments summary').click();
+    await page.locator('.experiments summary').hover();
     await assertFitsViewport(page);
     await page.getByRole('link', { name: 'Field', exact: true }).click();
     await page.locator('#field[data-ready="true"]').waitFor();
@@ -212,3 +212,155 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     } finally { await context.close(); }
   });
 }
+
+test('Experiments dropdown: hover, gap, dismissal, and keyboard focus', async () => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  try {
+    await page.goto(base + '/');
+    const menu = page.locator('details.experiments');
+    const trigger = menu.locator('summary');
+    const isOpen = () => menu.evaluate(element => element.open);
+    await trigger.hover();
+    assert.equal(await isOpen(), true);
+    const box = await menu.locator('.experiments-menu').boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y - 4);
+    await page.waitForTimeout(200);
+    assert.equal(await isOpen(), true, 'crossing the gap must not close the menu');
+    await page.getByRole('link', { name: 'Flocking', exact: true }).hover();
+    await page.waitForTimeout(200);
+    assert.equal(await isOpen(), true);
+    await page.mouse.move(1, 200);
+    await page.waitForTimeout(220);
+    assert.equal(await isOpen(), false, 'leaving closes the menu');
+    await trigger.hover();
+    await page.mouse.move(1, 200);
+    await page.waitForTimeout(50);
+    await trigger.hover();
+    await page.waitForTimeout(180);
+    assert.equal(await isOpen(), true, 'returning cancels dismissal');
+    await trigger.click();
+    assert.equal(await isOpen(), false, 'click toggles the hovered menu');
+    await page.mouse.move(1, 200);
+    await trigger.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await isOpen(), true);
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Field');
+    await page.waitForTimeout(200);
+    assert.equal(await isOpen(), true, 'keyboard focus keeps it open');
+    await page.keyboard.press('Escape');
+    assert.equal(await isOpen(), false);
+    assert.equal(await trigger.evaluate(element => element === document.activeElement), true);
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    assert.equal(await isOpen(), false, 'tabbing outside closes it');
+    await trigger.hover();
+    await page.mouse.click(1, 200);
+    assert.equal(await isOpen(), false, 'outside click closes it immediately');
+  } finally { await context.close(); }
+});
+
+test('Experiments dropdown: touch toggling and outside tap', async () => {
+  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  try {
+    await page.goto(base + '/');
+    const menu = page.locator('details.experiments');
+    await menu.locator('summary').tap();
+    assert.equal(await menu.evaluate(element => element.open), true);
+    await menu.locator('summary').tap();
+    assert.equal(await menu.evaluate(element => element.open), false);
+    await menu.locator('summary').tap();
+    await page.touchscreen.tap(10, 150);
+    assert.equal(await menu.evaluate(element => element.open), false);
+    await menu.locator('summary').tap();
+    await page.getByRole('link', { name: 'Flocking', exact: true }).tap();
+    await page.locator('#flock[data-ready="true"]').waitFor();
+  } finally { await context.close(); }
+});
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+  test(`Rust flock, ${viewport.width}px: sliders, input, pause, reset, and resize`, async () => {
+    const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    try {
+      await page.goto(base + '/experiments/flocking/');
+      const canvas = page.locator('#flock[data-ready="true"]');
+      await canvas.waitFor();
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.count === '300');
+      await assertFitsViewport(page);
+      assert.equal(await page.locator('#status').textContent(), '');
+      assert.equal(await page.locator('#pause').getAttribute('aria-pressed'), 'true');
+      const panel = page.locator('details.controls');
+      assert.equal(await panel.evaluate(element => element.open), viewport.width > 600);
+      await page.screenshot({ path: path.join(screenshots, `flocking-${viewport.width}.png`) });
+      if (viewport.width <= 600) await panel.locator('summary').click();
+      await assertFitsViewport(page);
+      const pixels = async () => createHash('sha256').update(await page.screenshot({ clip: { x: 0, y: 100, width: Math.min(120, viewport.width), height: 450 } })).digest('hex');
+      const original = await pixels();
+      const steps = await canvas.getAttribute('data-steps');
+      await page.waitForTimeout(100);
+      assert.equal(await canvas.getAttribute('data-steps'), steps, 'reduced motion starts frozen');
+      for (const [label, value, output] of [['Count', '800', '800'], ['Speed', '2', '2.0×'], ['Separation', '0', '0.0'], ['Alignment', '3', '3.0'], ['Cohesion', '0.5', '0.5']]) {
+        await page.getByLabel(label, { exact: true }).fill(value);
+        const id = label.toLowerCase();
+        assert.equal(await page.locator(`#${id}-value`).textContent(), output);
+      }
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.count === '800');
+      assert.notEqual(await pixels(), original, 'count changes the drawing');
+      await page.getByLabel('Speed', { exact: true }).focus();
+      await page.keyboard.press('ArrowLeft');
+      assert.equal(await page.locator('#speed-value').textContent(), '1.9×');
+      await page.getByRole('button', { name: 'Reset', exact: true }).click();
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.count === '300');
+      assert.equal(await page.locator('#speed-value').textContent(), '1.0×');
+      assert.equal(await page.locator('#separation-value').textContent(), '1.5');
+      assert.equal(await pixels(), original, 'reset restores the seeded flock');
+      if (viewport.width <= 600) await panel.locator('summary').click();
+      await page.mouse.move(80, 150);
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'repel');
+      await page.mouse.down();
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'attract');
+      await page.mouse.up();
+      await canvas.focus();
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'attract');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'repel');
+      if (viewport.width <= 600) await panel.locator('summary').click();
+      await page.getByRole('button', { name: 'Play', exact: true }).click();
+      await page.waitForFunction(() => Number(document.querySelector('#flock').dataset.steps) > 5);
+      assert.notEqual(await pixels(), original, 'playing moves the birds');
+      await page.getByRole('button', { name: 'Pause', exact: true }).click();
+      const paused = await pixels();
+      await page.waitForTimeout(100);
+      assert.equal(await pixels(), paused);
+      await page.setViewportSize({ width: viewport.width + 40, height: viewport.height - 40 });
+      await page.waitForFunction(() => document.querySelector('#flock').width === Math.round(innerWidth * Math.min(devicePixelRatio, 2)));
+      await assertFitsViewport(page);
+      assert.deepEqual(errors, []);
+    } finally { await context.close(); }
+  });
+}
+
+test('flock touch release removes attraction', async () => {
+  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  try {
+    await page.goto(base + '/experiments/flocking/');
+    await page.locator('#flock[data-ready="true"]').waitFor();
+    // Chromium's touch protocol gives us separate press, drag, and release.
+    const session = await context.newCDPSession(page);
+    await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 100, y: 200 }] });
+    await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'attract');
+    await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 120, y: 220 }] });
+    await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await page.waitForFunction(() => document.querySelector('#flock').dataset.pointer === 'inactive');
+  } finally { await context.close(); }
+});

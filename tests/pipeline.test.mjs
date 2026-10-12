@@ -36,7 +36,7 @@ test('all current pages, image variants, metadata, and links exist', async () =>
       assert.match(attributes, /src="https:\/\/(?:www\.youtube\.com\/embed\/|player\.vimeo\.com\/video\/)/);
     }
   }
-  const expectedPages = ['index.html', 'about/index.html', 'works/index.html', 'play/index.html', '404.html', ...projects.map(slug => `works/${slug}/index.html`)];
+  const expectedPages = ['index.html', 'about/index.html', 'works/index.html', 'play/index.html', 'experiments/flocking/index.html', '404.html', ...projects.map(slug => `works/${slug}/index.html`)];
   assert.deepEqual(Object.keys(manifest.files).filter(file => file.endsWith('.html')).sort(), expectedPages.sort());
   const home = await readFile('site_dist/index.html', 'utf8');
   assert.deepEqual([...home.matchAll(/<a href="(\/works\/[^\"]+\/)" class="work-image"/g)].map(match => match[1]), ['/works/paradisium/', '/works/abduction/', '/works/the_folly/']);
