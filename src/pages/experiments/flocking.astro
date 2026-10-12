@@ -1,5 +1,5 @@
 ---
-const canonical = new URL(Astro.url.pathname, Astro.site);
+import ExperimentLayout from '../../layouts/ExperimentLayout.astro';
 const sliders = [
   { id: 'count', label: 'Count', min: 50, max: 800, step: 50, value: 300 },
   { id: 'speed', label: 'Speed', min: 0.5, max: 2, step: 0.1, value: 1 },
@@ -8,43 +8,32 @@ const sliders = [
   { id: 'cohesion', label: 'Cohesion', min: 0, max: 3, step: 0.1, value: 1 },
 ];
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
-    <title>Flocking — Gerald Spencer</title>
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/g3.ico" />
-  </head>
-  <body class="flocking-page">
-    <a class="skip-link" href="#main">Skip to flock</a>
-    <main id="main" tabindex="-1">
-      <canvas id="flock" tabindex="0" aria-label="Flocking birds. Move to repel; hold to attract. Keyboard: arrow keys move the pointer, Enter toggles attraction."></canvas>
-      <header><a href="/" aria-label="Home">G3<span>.</span></a><div class="experiment-links"><span>Flocking</span><a href="https://github.com/Geethree/g3-site/tree/master/experiments/flocking" aria-label="Flocking source on GitHub">GitHub</a></div></header>
-      <details class="controls" open>
-        <summary>Controls</summary>
-        <div class="sliders">
-          {sliders.map(({ id, label, ...attributes }) => <div class="slider">
-            <label for={id}>{label}</label><output id={`${id}-value`} for={id}>{attributes.value}</output>
-            <input id={id} type="range" {...attributes} />
-          </div>)}
-          <div class="buttons"><button id="pause" type="button" aria-pressed="false">Pause</button><button id="reset" type="button">Reset</button></div>
-        </div>
-      </details>
-      <p class="hint">Move to repel · Hold to attract</p>
-      <p id="status" role="status">Loading…</p>
-      <noscript><p class="error">Enable JavaScript to run this experiment.</p></noscript>
-    </main>
-    <script is:inline type="module">
-      if (matchMedia('(max-width: 600px)').matches) document.querySelector('.controls').open = false;
-      import('/experiments/flocking/wasm/flocking.js').then(({ default: init }) => init()).catch(error => {
-        document.getElementById('status').textContent = `Unable to start: ${error.message || error}`;
-      });
-    </script>
-  </body>
-</html>
+<ExperimentLayout title="Flocking" bodyClass="flocking-page">
+  <a class="skip-link" href="#main">Skip to flock</a>
+  <main id="main" tabindex="-1">
+    <canvas id="flock" tabindex="0" aria-label="Flocking birds. Move to repel; hold to attract. Keyboard: arrow keys move the pointer, Enter toggles attraction."></canvas>
+    <header><a href="/" aria-label="Home">G3<span>.</span></a><div class="experiment-links"><span>Flocking</span><a href="https://github.com/Geethree/g3-site/tree/master/experiments/flocking" aria-label="Flocking source on GitHub">GitHub</a></div></header>
+    <details class="controls" open>
+      <summary>Controls</summary>
+      <div class="sliders">
+        {sliders.map(({ id, label, ...attributes }) => <div class="slider">
+          <label for={id}>{label}</label><output id={`${id}-value`} for={id}>{attributes.value}</output>
+          <input id={id} type="range" {...attributes} />
+        </div>)}
+        <div class="buttons"><button id="pause" type="button" aria-pressed="false">Pause</button><button id="reset" type="button">Reset</button></div>
+      </div>
+    </details>
+    <p class="hint">Move to repel · Hold to attract</p>
+    <p id="status" role="status">Loading…</p>
+    <noscript><p class="error">Enable JavaScript to run this experiment.</p></noscript>
+  </main>
+  <script is:inline type="module">
+    if (matchMedia('(max-width: 600px)').matches) document.querySelector('.controls').open = false;
+    import('/experiments/flocking/wasm/flocking.js').then(({ default: init }) => init()).catch(error => {
+      document.getElementById('status').textContent = `Unable to start: ${error.message || error}`;
+    });
+  </script>
+</ExperimentLayout>
 <style>
   :global(body.flocking-page) { margin: 0; background: #030509; color: #d8e2ee; font: 13px system-ui, sans-serif; }
   main { width: 100%; margin: 0; height: 100svh; min-height: 320px; position: relative; overflow: hidden; }

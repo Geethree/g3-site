@@ -1,0 +1,25 @@
+---
+import WebAnalytics from '../components/WebAnalytics.astro';
+
+interface Props {
+  title: string;
+  bodyClass: string;
+}
+const { title, bodyClass } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>{title} — Gerald Spencer</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/g3.ico" />
+  </head>
+  <body class={bodyClass}>
+    <slot />
+    <WebAnalytics />
+  </body>
+</html>
