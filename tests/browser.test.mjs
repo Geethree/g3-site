@@ -2,10 +2,15 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { once } from 'node:events';
+import { existsSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { chromium } from 'playwright';
 import { startServer } from '../bazel/tools/serve.mjs';
+
+if (!process.env.PLAYWRIGHT_BROWSERS_PATH && existsSync('/ms-playwright')) {
+  process.env.PLAYWRIGHT_BROWSERS_PATH = '/ms-playwright';
+}
+const { chromium } = await import('playwright');
 
 let browser, server, base;
 async function assertFitsViewport(page) {
@@ -26,7 +31,7 @@ async function capturePage(page, filename) {
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: path.join(screenshots, filename), fullPage: true });
 }
-const screenshots = path.resolve(process.env.G3_SCREENSHOT_DIR || path.join(process.env.BUILD_WORKSPACE_DIRECTORY || process.cwd(), 'test-results'));
+const screenshots = path.resolve(process.env.G3_SCREENSHOT_DIR || path.join(process.env.TEST_UNDECLARED_OUTPUTS_DIR || process.env.BUILD_WORKSPACE_DIRECTORY || process.cwd(), 'test-results'));
 before(async () => {
   await mkdir(screenshots, { recursive: true });
   server = startServer('site_dist', { port: 0 });

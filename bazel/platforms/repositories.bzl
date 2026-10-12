@@ -1,4 +1,4 @@
-"""Select the local host, including its libc, without an RBE platform."""
+"""Select the local host platform, including its libc."""
 
 def linux_libc(rctx):
     """Resolve the host libc once, using the same rule for LLVM and Node."""

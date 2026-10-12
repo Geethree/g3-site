@@ -1,7 +1,5 @@
 """Libc-aware Linux repositories for the standard rules_nodejs toolchains."""
 
-load(":repositories.bzl", "linux_libc")
-
 # Node 22.22.3: official glibc releases and Node's unofficial-builds musl releases.
 _ARCHIVES = {
     "x64-glibc": "2e5d13569282d016861fae7c8f935e741693c269101a5bebcf761a5376d1f99f",
@@ -14,7 +12,7 @@ def _node_impl(rctx):
     version = rctx.read(rctx.attr.version_file).strip()
     if version != "22.22.3":
         fail("Update the Linux Node archive checksums when changing .nvmrc")
-    libc = linux_libc(rctx) or "glibc"
+    libc = rctx.attr.libc
     arch = rctx.attr.arch
     distribution = "node-v{}-linux-{}{}".format(version, arch, "-musl" if libc == "musl" else "")
     origin = "https://unofficial-builds.nodejs.org/download/release" if libc == "musl" else "https://nodejs.org/dist"
@@ -48,7 +46,29 @@ linux_node_repository = repository_rule(
     implementation = _node_impl,
     attrs = {
         "arch": attr.string(mandatory = True, values = ["x64", "arm64"]),
+        "libc": attr.string(default = "glibc", values = ["glibc", "musl"]),
         "version_file": attr.label(allow_single_file = True, mandatory = True),
     },
-    configure = True,
 )
+
+def register_linux_node_toolchains():
+    for arch, cpu in [("x64", "x86_64"), ("arm64", "arm64")]:
+        for libc in ["glibc", "musl"]:
+            repo = "site_node_linux_" + arch + ("_musl" if libc == "musl" else "")
+            constraints = [
+                "@platforms//os:linux",
+                "@platforms//cpu:" + cpu,
+                "@aspect_rules_js//platforms/libc:" + libc,
+            ]
+            native.toolchain(
+                name = "node_{}_{}_exec_toolchain".format(arch, libc),
+                toolchain = "@{}//:toolchain".format(repo),
+                toolchain_type = "@rules_nodejs//nodejs:toolchain_type",
+                exec_compatible_with = constraints,
+            )
+            native.toolchain(
+                name = "node_{}_{}_runtime_toolchain".format(arch, libc),
+                toolchain = "@{}//:toolchain".format(repo),
+                toolchain_type = "@rules_nodejs//nodejs:runtime_toolchain_type",
+                target_compatible_with = constraints,
+            )

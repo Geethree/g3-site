@@ -1,0 +1,7 @@
+run:rbe --remote_download_regex=.*/site_dist(/.*)?$
+run:rbe --remote_download_regex=.*/bazel/tools/.*$
+
+build:rbe --remote_download_regex=.*/\\.astro/types\\.d\\.ts$
+build:rbe --remote_download_regex=.*/astro-check\\.txt$
+build:rbe --remote_download_regex=.*/resume/gerald-spencer\\.pdf$
+build:rbe --remote_download_regex=.*/test\\.outputs/.*\\.png$

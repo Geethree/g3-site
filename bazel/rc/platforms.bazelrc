@@ -1,0 +1,7 @@
+# Keep local launchers on the host; RBE build and test targets use Linux.
+build --host_platform=@site_host//:host
+build --platforms=@site_host//:host
+
+build:rbe --platforms=//bazel/platforms:linux_amd64
+build:rbe --extra_execution_platforms=//bazel/platforms:linux_amd64
+run:rbe --platforms=@site_host//:host

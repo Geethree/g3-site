@@ -1,4 +1,29 @@
 load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load(":node.bzl", "register_linux_node_toolchains")
+
+register_linux_node_toolchains()
+
+config_setting(
+    name = "linux",
+    constraint_values = ["@platforms//os:linux"],
+    visibility = ["//visibility:public"],
+)
+
+platform(
+    name = "linux_amd64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+        "@llvm//constraints/libc:gnu.2.28",
+        "@aspect_rules_js//platforms/libc:glibc",
+    ],
+    exec_properties = {
+        "container-image": "docker://ghcr.io/catthehacker/ubuntu:act-22.04@sha256:5f9c35c25db1d51a8ddaae5c0ba8d3c163c5e9a4a6cc97acd409ac7eae239448",
+        "OSFamily": "Linux",
+        "Arch": "amd64",
+    },
+    visibility = ["//visibility:public"],
+)
 
 cc_test(
     name = "llvm_test",

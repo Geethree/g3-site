@@ -32,6 +32,22 @@ linux_node(
     version_file = "//:.nvmrc",
 )
 
+linux_node(
+    name = "site_node_linux_x64_musl",
+    arch = "x64",
+    libc = "musl",
+    version_file = "//:.nvmrc",
+)
+
+linux_node(
+    name = "site_node_linux_arm64_musl",
+    arch = "arm64",
+    libc = "musl",
+    version_file = "//:.nvmrc",
+)
+
+register_toolchains("//bazel/platforms:all")
+
 override_repo(
     node,
     nodejs_linux_amd64 = "site_node_linux_x64",
@@ -60,9 +76,37 @@ use_repo(typescript, "npm_typescript")
 
 typst_binary = use_repo_rule("//bazel/rules:typst.bzl", "typst_binary_repository")
 
-typst_binary(name = "typst_binary")
+typst_binary(
+    name = "typst_binary_linux_x86_64",
+    platform = "linux-x86_64",
+)
 
-register_toolchains("//bazel/rules:typst_toolchain")
+typst_binary(
+    name = "typst_binary_linux_aarch64",
+    platform = "linux-aarch64",
+)
+
+typst_binary(
+    name = "typst_binary_macos_x86_64",
+    platform = "macos-x86_64",
+)
+
+typst_binary(
+    name = "typst_binary_macos_aarch64",
+    platform = "macos-aarch64",
+)
+
+typst_binary(
+    name = "typst_binary_windows_x86_64",
+    platform = "windows-x86_64",
+)
+
+typst_binary(
+    name = "typst_binary_windows_aarch64",
+    platform = "windows-aarch64",
+)
+
+register_toolchains("//bazel/rules:all")
 
 typst = use_extension("//bazel/rules:typst.bzl", "typst")
 typst.package(
@@ -88,38 +132,52 @@ http_archive(
 
 # Rust owns the WebGL playground; only wasm-bindgen's loader runs in JS.
 bazel_dep(name = "rules_rs", version = "0.0.107")
+
 rust_toolchains = use_extension("@rules_rs//rs/toolchains:module_extension.bzl", "toolchains")
-rust_toolchains.toolchain(edition = "2024", version = "1.96.1")
+rust_toolchains.toolchain(
+    edition = "2024",
+    version = "1.96.1",
+)
 use_repo(rust_toolchains, "default_rust_toolchains")
+
 register_toolchains("@default_rust_toolchains//...")
+
 rules_rust = use_extension("@rules_rs//rs:rules_rust.bzl", "rules_rust")
 use_repo(rules_rust, "rules_rust")
+
 wasm_bindgen = use_extension("@rules_rs//rs:rules_rust_wasm_bindgen.bzl", "rules_rust_wasm_bindgen")
 use_repo(wasm_bindgen, "rules_rust_wasm_bindgen")
+
 register_toolchains("@rules_rust_wasm_bindgen//:default_wasm_bindgen_toolchain")
+
 field_crate = use_extension("@rules_rs//rs:extensions.bzl", "crate")
 field_crate.from_cargo(
     name = "field_crates",
-    cargo_toml = "//experiments/field:Cargo.toml",
     cargo_lock = "//experiments/field:Cargo.lock",
+    cargo_toml = "//experiments/field:Cargo.toml",
     platform_triples = [
         "wasm32-unknown-unknown",
-        "aarch64-apple-darwin", "x86_64-apple-darwin",
-        "aarch64-unknown-linux-gnu", "x86_64-unknown-linux-gnu",
-        "aarch64-pc-windows-msvc", "x86_64-pc-windows-msvc",
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "x86_64-unknown-linux-gnu",
+        "aarch64-pc-windows-msvc",
+        "x86_64-pc-windows-msvc",
     ],
 )
 use_repo(field_crate, "field_crates")
-
 field_crate.from_cargo(
     name = "flocking_crates",
-    cargo_toml = "//experiments/flocking:Cargo.toml",
     cargo_lock = "//experiments/flocking:Cargo.lock",
+    cargo_toml = "//experiments/flocking:Cargo.toml",
     platform_triples = [
         "wasm32-unknown-unknown",
-        "aarch64-apple-darwin", "x86_64-apple-darwin",
-        "aarch64-unknown-linux-gnu", "x86_64-unknown-linux-gnu",
-        "aarch64-pc-windows-msvc", "x86_64-pc-windows-msvc",
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "x86_64-unknown-linux-gnu",
+        "aarch64-pc-windows-msvc",
+        "x86_64-pc-windows-msvc",
     ],
 )
 use_repo(field_crate, "flocking_crates")
