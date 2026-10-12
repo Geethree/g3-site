@@ -1,6 +1,11 @@
 common --enable_platform_specific_config
 common --repo_env=DO_NOT_TRACK=1
 common --repo_env=BAZEL_MACOS_USE_HOST_SDK=0
-build --host_platform=@site_host//:host
-build --platforms=@site_host//:host
 test --test_output=errors
+
+import %workspace%/bazel/rc/platforms.bazelrc
+import %workspace%/bazel/rc/remote.bazelrc
+import %workspace%/bazel/rc/materialization.bazelrc
+import %workspace%/bazel/rc/ci.bazelrc
+
+try-import %workspace%/.bazelrc.user

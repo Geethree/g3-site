@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+args=("$@")
+
+if [[ "${CI:-}" == "true" ]]; then
+    for ((i = 0; i < ${#args[@]}; i++)); do
+        # Startup options precede the command; build options follow it.
+        [[ "${args[i]}" == -* ]] && continue
+        case "${args[i]}" in
+            build|test|run|coverage|aquery|cquery)
+                ci_args=(--config=ci)
+                if [[ -n "${BUILDBUDDY_API_KEY:-}" ]]; then
+                    ci_args+=("--remote_header=x-buildbuddy-api-key=${BUILDBUDDY_API_KEY}")
+                fi
+                args=("${args[@]:0:i+1}" "${ci_args[@]}" "${args[@]:i+1}")
+                ;;
+        esac
+        break
+    done
+fi
+
+# Bazelisk discovers this wrapper automatically and supplies the real binary.
+export BAZELISK_SKIP_WRAPPER=1
+exec "${BAZEL_REAL:-bazel}" "${args[@]}"

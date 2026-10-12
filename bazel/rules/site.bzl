@@ -6,6 +6,17 @@ load("@bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
 load("@npm//:astro/package_json.bzl", astro_bin = "bin")
 load("@npm//:playwright/package_json.bzl", playwright_bin = "bin")
 
+def _execution_data_impl(ctx):
+    files = depset(transitive = [target[DefaultInfo].files for target in ctx.attr.srcs])
+    return [DefaultInfo(files = files, runfiles = ctx.runfiles(transitive_files = files))]
+
+# Static build outputs use execution-platform tools and native npm dependencies,
+# independently of the platform running the preview or export launcher.
+_execution_data = rule(
+    implementation = _execution_data_impl,
+    attrs = {"srcs": attr.label_list(cfg = "exec")},
+)
+
 def portfolio_site():
     native.filegroup(
         name = "content_sources",
@@ -52,10 +63,17 @@ def portfolio_site():
     astro_bin.astro(
         name = "astro_build",
         srcs = [
-            ":frontend_sources", ":content_sources", ":images", ":node_modules/astro",
-            ":node_modules/@astrojs/react", ":node_modules/@astrojs/sitemap",
-            ":node_modules/@astrojs/markdown-remark", ":node_modules/rehype-raw",
-            ":node_modules/@fontsource/inter", ":node_modules/react", ":node_modules/react-dom",
+            ":frontend_sources",
+            ":content_sources",
+            ":images",
+            ":node_modules/astro",
+            ":node_modules/@astrojs/react",
+            ":node_modules/@astrojs/sitemap",
+            ":node_modules/@astrojs/markdown-remark",
+            ":node_modules/rehype-raw",
+            ":node_modules/@fontsource/inter",
+            ":node_modules/react",
+            ":node_modules/react-dom",
         ],
         args = ["build"],
         out_dirs = ["astro_site", "astro_cache", ".astro"],
@@ -66,13 +84,23 @@ def portfolio_site():
     astro_bin.astro(
         name = "typecheck",
         srcs = [
-            ":frontend_sources", ":content_sources", ":images", ":astro_build", ":node_modules/astro",
-            ":node_modules/@astrojs/check", ":node_modules/typescript",
-            ":node_modules/@types/react", ":node_modules/@types/react-dom",
-            ":node_modules/@types/node", ":node_modules/@astrojs/react",
-            ":node_modules/@astrojs/sitemap", ":node_modules/@astrojs/markdown-remark",
-            ":node_modules/rehype-raw", ":node_modules/@fontsource/inter",
-            ":node_modules/react", ":node_modules/react-dom",
+            ":frontend_sources",
+            ":content_sources",
+            ":images",
+            ":astro_build",
+            ":node_modules/astro",
+            ":node_modules/@astrojs/check",
+            ":node_modules/typescript",
+            ":node_modules/@types/react",
+            ":node_modules/@types/react-dom",
+            ":node_modules/@types/node",
+            ":node_modules/@astrojs/react",
+            ":node_modules/@astrojs/sitemap",
+            ":node_modules/@astrojs/markdown-remark",
+            ":node_modules/rehype-raw",
+            ":node_modules/@fontsource/inter",
+            ":node_modules/react",
+            ":node_modules/react-dom",
         ],
         args = ["check", "--noSync", "--minimumFailingSeverity", "warning"],
         stdout = "astro-check.txt",
@@ -85,9 +113,14 @@ def portfolio_site():
         srcs = native.glob(["src/components/*.tsx"]) + ["src/types.ts", "src/site.ts"],
         tsconfig = {
             "compilerOptions": {
-                "target": "ES2022", "lib": ["ES2022", "DOM", "DOM.Iterable"],
-                "module": "ESNext", "moduleResolution": "Bundler", "jsx": "react-jsx",
-                "strict": True, "noEmit": True, "skipLibCheck": True,
+                "target": "ES2022",
+                "lib": ["ES2022", "DOM", "DOM.Iterable"],
+                "module": "ESNext",
+                "moduleResolution": "Bundler",
+                "jsx": "react-jsx",
+                "strict": True,
+                "noEmit": True,
+                "skipLibCheck": True,
                 "allowSyntheticDefaultImports": True,
             },
         },
@@ -132,17 +165,22 @@ def portfolio_site():
         visibility = ["//visibility:public"],
     )
 
+    _execution_data(
+        name = "site_runtime",
+        srcs = [":site"],
+    )
+
     js_binary(
         name = "export",
         entry_point = "bazel/tools/export.mjs",
-        data = [":build_tools", ":site"],
+        data = [":build_tools", ":site_runtime"],
         chdir = ".",
     )
 
     js_binary(
         name = "serve",
         entry_point = "bazel/tools/serve.mjs",
-        data = [":build_tools", ":site"],
+        data = [":build_tools", ":site_runtime"],
         chdir = ".",
     )
 
@@ -163,16 +201,25 @@ def portfolio_site():
         chdir = ".",
     )
 
-    js_binary(
+    js_test(
         name = "browser_checks",
         entry_point = "tests/browser.test.mjs",
         data = [":node_modules/playwright", ":site", ":test_tools"],
+        env_inherit = ["PLAYWRIGHT_BROWSERS_PATH"],
+        exec_properties = select({
+            "//bazel/platforms:linux": {
+                # Match the pinned npm version; browsers and OS libraries are preinstalled.
+                "container-image": "docker://mcr.microsoft.com/playwright:v1.55.1-noble@sha256:d8e0bdf35da90942fc8f97a65fa7f1969200ccd916ec0fd78780d80d9b81e07b",
+            },
+            "//conditions:default": {},
+        }),
         preserve_symlinks_main = False,
         patch_node_fs = False,
         chdir = ".",
+        size = "medium",
     )
 
     native.test_suite(
         name = "tests",
-        tests = [":pipeline_test", "//bazel/platforms:llvm_test", "//experiments/flocking:simulation_test"],
+        tests = [":pipeline_test", ":browser_checks", "//bazel/platforms:llvm_test", "//experiments/flocking:simulation_test"],
     )
