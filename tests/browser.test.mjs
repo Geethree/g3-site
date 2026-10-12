@@ -13,6 +13,12 @@ if (!process.env.PLAYWRIGHT_BROWSERS_PATH && existsSync('/ms-playwright')) {
 const { chromium } = await import('playwright');
 
 let browser, server, base;
+async function newContext(options) {
+  const context = await browser.newContext(options);
+  // Keep browser checks independent of Cloudflare and out of production analytics.
+  await context.route('https://static.cloudflareinsights.com/beacon.min.js', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
+  return context;
+}
 async function assertFitsViewport(page) {
   const overflow = await page.evaluate(() => {
     if (document.documentElement.scrollWidth <= innerWidth) return null;
@@ -48,7 +54,7 @@ after(async () => {
 for (const colorScheme of ['light', 'dark']) {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     test(`${colorScheme}, ${viewport.width}px: hydration, navigation, and image viewer`, async () => {
-      const context = await browser.newContext({ colorScheme, reducedMotion: 'reduce', viewport });
+      const context = await newContext({ colorScheme, reducedMotion: 'reduce', viewport });
       const page = await context.newPage();
       page.setDefaultTimeout(8000);
       const errors = [];
@@ -97,7 +103,7 @@ for (const colorScheme of ['light', 'dark']) {
 
 for (const colorScheme of ['light', 'dark']) {
   test(`theme toggle starts from ${colorScheme}, overrides system changes, and resets on load`, async () => {
-    const context = await browser.newContext({ colorScheme });
+    const context = await newContext({ colorScheme });
     const page = await context.newPage();
     const opposite = colorScheme === 'light' ? 'dark' : 'light';
     const assertTheme = async theme => {
@@ -128,7 +134,7 @@ for (const colorScheme of ['light', 'dark']) {
 }
 
 test('navigation, photos, and content work without JavaScript', async () => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
+  const context = await newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -149,7 +155,7 @@ test('navigation, photos, and content work without JavaScript', async () => {
 });
 
 test('homepage rotates three unique projects on reload without hydration errors', async () => {
-  const context = await browser.newContext();
+  const context = await newContext();
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -175,7 +181,7 @@ test('homepage rotates three unique projects on reload without hydration errors'
 });
 
 test('homepage selection works when browser storage is unavailable', async () => {
-  const context = await browser.newContext();
+  const context = await newContext();
   await context.addInitScript(() => {
     Storage.prototype.getItem = Storage.prototype.setItem = () => { throw new DOMException('Storage unavailable', 'SecurityError'); };
   });
@@ -191,7 +197,7 @@ test('homepage selection works when browser storage is unavailable', async () =>
 });
 
 test('navigation fits a narrow mobile screen', async () => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 640 } });
+  const context = await newContext({ viewport: { width: 320, height: 640 } });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -210,7 +216,7 @@ test('navigation fits a narrow mobile screen', async () => {
 
 for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
   test(`Rust WebGL field, ${viewport.width}px: rendering and controls`, async () => {
-    const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+    const context = await newContext({ viewport, reducedMotion: 'reduce' });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -251,7 +257,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
 }
 
 test('Experiments dropdown: hover, gap, dismissal, and keyboard focus', async () => {
-  const context = await browser.newContext();
+  const context = await newContext();
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -301,7 +307,7 @@ test('Experiments dropdown: hover, gap, dismissal, and keyboard focus', async ()
 });
 
 test('Experiments dropdown: touch toggling and outside tap', async () => {
-  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  const context = await newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   try {
     await page.goto(base + '/');
@@ -321,7 +327,7 @@ test('Experiments dropdown: touch toggling and outside tap', async () => {
 
 for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
   test(`Rust flock, ${viewport.width}px: sliders, input, pause, reset, and resize`, async () => {
-    const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+    const context = await newContext({ viewport, reducedMotion: 'reduce' });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -387,7 +393,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
 }
 
 test('flock touch release removes attraction', async () => {
-  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  const context = await newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
   try {
     await page.goto(base + '/experiments/flocking/');
