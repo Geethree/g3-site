@@ -1,0 +1,26 @@
+load("@field_crates//:defs.bzl", "all_crate_deps")
+load("@rules_rs//rs:rust_shared_library.bzl", "rust_shared_library")
+load("@rules_rust_wasm_bindgen//:defs.bzl", "rust_wasm_bindgen")
+
+exports_files(["Cargo.toml", "Cargo.lock"])
+
+# Compile Rust to WASM. Shader text is included in the WASM, not fetched later.
+rust_shared_library(
+    name = "field",
+    srcs = ["lib.rs", "animation.rs", "input.rs", "renderer.rs", "state.rs"],
+    compile_data = ["field.vert", "field.frag"],
+    edition = "2024",
+    deps = all_crate_deps(normal = True),
+    platform = "@rules_rs//rs/platforms:wasm32-unknown-unknown",
+    rustc_flags = ["-Copt-level=3"],
+)
+
+# Generate the browser loader and its matching WASM file.
+rust_wasm_bindgen(
+    name = "web",
+    wasm_file = ":field",
+    target = "web",
+    out_name = "field",
+    bindgen_flags = ["--no-typescript"],
+    visibility = ["//visibility:public"],
+)

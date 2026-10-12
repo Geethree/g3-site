@@ -28,7 +28,17 @@ h1, h2, h3, p { margin: 0; }
 .wordmark { font-weight: 600; font-size: 17px; letter-spacing: -.5px; text-decoration: none; }
 .brand-dot { color: var(--accent); }
 nav { display: flex; gap: 32px; }
-nav a { font-size: 14px; text-decoration: none; padding-block: 10px; color: var(--muted); }
+nav a, .experiments summary { font-size: 14px; text-decoration: none; padding-block: 10px; color: var(--muted); }
+.experiments { position: relative; }
+.experiments summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 7px; }
+.experiments summary::-webkit-details-marker { display: none; }
+.experiments summary::after { content: ""; width: 5px; height: 5px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.experiments[open] summary::after { transform: translateY(1px) rotate(225deg); }
+.experiments summary:hover { color: var(--accent); }
+.experiments summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.experiments-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 150px; padding: 6px; background: var(--background); border: 1px solid var(--line); z-index: 20; }
+.experiments-menu a { display: block; padding: 10px 12px; }
+.experiments-menu a:hover { background: var(--surface); }
 nav a[aria-current] { color: var(--text); text-decoration: underline; }
 .introduction { padding: 100px 0 88px; display: grid; grid-template-columns: 1.15fr 1fr; align-items: end; gap: 50px; }
 h1 { font-size: clamp(38px, 4.8vw, 64px); font-weight: 500; letter-spacing: -.055em; line-height: 1.07; }
@@ -93,7 +103,7 @@ h1 { font-size: clamp(38px, 4.8vw, 64px); font-weight: 500; letter-spacing: -.05
   .site-header, main, .site-footer { width: calc(100% - 40px); }
   .site-header { height: 84px; }
   nav { gap: 14px; }
-  nav a { font-size: 12px; }
+  nav a, .experiments summary { font-size: 12px; }
   .wordmark { font-size: 15px; }
   .introduction { grid-template-columns: 1fr; gap: 28px; padding: 62px 0 54px; }
   .intro-summary { font-size: 15px; }
@@ -107,6 +117,10 @@ h1 { font-size: clamp(38px, 4.8vw, 64px); font-weight: 500; letter-spacing: -.05
   .site-footer { margin-top: 68px; min-height: 110px; gap: 20px; }
   .site-footer div { gap: 16px; }
   .image-viewer { max-width: 100vw; width: 100vw; }
+}
+@media (max-width: 500px) {
+  .site-header:not(.home-header) { height: auto; padding-block: 20px 12px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .site-header nav { width: 100%; justify-content: space-between; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }

@@ -5,7 +5,7 @@ import { argument } from './lib.mjs';
 
 export function startServer(directory, { port = 1313, host = '127.0.0.1' } = {}) {
   const root = path.resolve(directory);
-  const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.woff2': 'font/woff2', '.woff': 'font/woff', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.pdf': 'application/pdf', '.ico': 'image/x-icon', '.xml': 'application/xml', '.txt': 'text/plain' };
+  const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.wasm': 'application/wasm', '.json': 'application/json', '.woff2': 'font/woff2', '.woff': 'font/woff', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.pdf': 'application/pdf', '.ico': 'image/x-icon', '.xml': 'application/xml', '.txt': 'text/plain' };
   const server = createServer(async (request, response) => {
     try {
       const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);

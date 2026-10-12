@@ -18,7 +18,7 @@ test('all current pages, image variants, metadata, and links exist', async () =>
     safeRelative(filename);
     if (!filename.endsWith('.html')) continue;
     const html = await readFile(path.join('site_dist', filename), 'utf8');
-    assert.match(html, /<html lang="en">/);
+    assert.match(html, /<html lang="en"(?:\s[^>]*)?>/);
     assert.match(html, /rel="canonical"/);
     assert.match(html, /<link[^>]+rel="stylesheet"|<style[^>]*>[^<]*--background:/);
     assert.match(html, /class="skip-link"/);
@@ -36,7 +36,7 @@ test('all current pages, image variants, metadata, and links exist', async () =>
       assert.match(attributes, /src="https:\/\/(?:www\.youtube\.com\/embed\/|player\.vimeo\.com\/video\/)/);
     }
   }
-  const expectedPages = ['index.html', 'about/index.html', 'works/index.html', '404.html', ...projects.map(slug => `works/${slug}/index.html`)];
+  const expectedPages = ['index.html', 'about/index.html', 'works/index.html', 'play/index.html', '404.html', ...projects.map(slug => `works/${slug}/index.html`)];
   assert.deepEqual(Object.keys(manifest.files).filter(file => file.endsWith('.html')).sort(), expectedPages.sort());
   const home = await readFile('site_dist/index.html', 'utf8');
   assert.deepEqual([...home.matchAll(/<a href="(\/works\/[^\"]+\/)" class="work-image"/g)].map(match => match[1]), ['/works/paradisium/', '/works/abduction/', '/works/the_folly/']);

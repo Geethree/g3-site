@@ -40,6 +40,10 @@ const isHome = Astro.url.pathname === '/';
         <a href="/about/" aria-current={section === 'about' ? 'page' : undefined}>About</a>
         <a href="/works/" aria-current={section === 'works' ? 'page' : undefined}>Works</a>
         <a href="/gerald-spencer.pdf">Resume</a>
+        <details class="experiments">
+          <summary>Experiments</summary>
+          <div class="experiments-menu"><a href="/play/">Field</a></div>
+        </details>
       </nav>
     </header>
     <main id="main" tabindex="-1"><slot /></main>

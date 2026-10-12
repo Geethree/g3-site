@@ -1,0 +1,51 @@
+---
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Play — Gerald Spencer</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/g3.ico" />
+  </head>
+  <body class="play-page">
+    <a class="skip-link" href="#main">Skip to field</a>
+    <main id="main" tabindex="-1">
+      <canvas id="field" tabindex="0" aria-label="Interactive luminous field. Move to bend the strands; click or touch to send a pulse. Keyboard: arrow keys to bend, Enter to pulse."></canvas>
+      <header><a href="/" aria-label="Home">G3<span>.</span></a><span>Field</span></header>
+      <div class="controls" role="group" aria-label="Field controls">
+        <button id="pause" type="button" aria-pressed="false">Pause</button>
+        <button id="color" type="button">Color</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+      <p class="hint">Move to bend · Click to pulse</p>
+      <p id="status" role="status">Loading…</p>
+      <noscript><p class="error">Enable JavaScript to run this experiment.</p></noscript>
+    </main>
+    <script is:inline type="module">
+      import('/play/wasm/field.js').then(({ default: init }) => init()).catch(error => {
+        document.getElementById('status').textContent = `Unable to start: ${error.message || error}`;
+      });
+    </script>
+  </body>
+</html>
+<style>
+  :global(body.play-page) { margin: 0; background: #030509; color: #d8e2ee; font: 13px system-ui, sans-serif; }
+  main { width: 100%; margin: 0; position: relative; height: 100svh; min-height: 320px; overflow: hidden; }
+  canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+  header { position: absolute; top: 28px; left: 32px; right: 32px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+  header a { color: #eef3fb; text-decoration: none; font-size: 24px; font-weight: 650; letter-spacing: -1px; pointer-events: auto; }
+  header a span { color: #79e3dd; }
+  header > span { color: #91a0b5; }
+  .controls { position: absolute; bottom: 30px; right: 32px; display: flex; gap: 6px; }
+  button { background: #0c1222d9; color: #c8d5e8; border: 1px solid #263044; border-radius: 6px; padding: 10px 15px; cursor: pointer; font: inherit; }
+  button:hover { background: #1b2740; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #79e3dd; outline-offset: 4px; }
+  .hint { position: absolute; left: 32px; bottom: 28px; color: #8494aa; margin: 0; pointer-events: none; }
+  #status, .error { position: absolute; top: 48%; width: 100%; text-align: center; padding: 0 24px; }
+  #status:empty { display: none; }
+  @media (max-width: 600px) { header { left: 20px; right: 20px; top: 20px; } .controls { right: 20px; bottom: 24px; } .hint { left: 20px; bottom: 84px; font-size: 12px; } }
+</style>

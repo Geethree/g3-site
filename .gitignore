@@ -6,3 +6,4 @@ test-results/
 astro_cache/
 astro_site/
 dist/
+**/target

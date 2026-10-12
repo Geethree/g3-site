@@ -77,3 +77,12 @@ bazel run //:browser_checks
 ```
 
 Browser checks cover desktop/mobile light and dark themes, hydration, reduced motion, image viewer keyboard controls and focus restoration, résumé downloads, and navigation without JavaScript. Screenshots are written to `test-results`. `PLAYWRIGHT_BROWSERS_PATH` can select a browser-cache directory, and `G3_SCREENSHOT_DIR` can select a screenshot directory.
+
+## Rust / WebGL experiment
+
+Preview `/play/` with `bazel run //:serve`. Rust handles drawing and input;
+GLSL shaders calculate the glowing strands. `rules_rs` builds the WASM and
+`wasm-bindgen` generates its browser loader.
+
+See [experiments/field/README.md](experiments/field/README.md) for the file map,
+how each frame works, and where to change the effects.

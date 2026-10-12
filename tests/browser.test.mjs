@@ -1,5 +1,6 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { once } from 'node:events';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -101,6 +102,12 @@ test('navigation, photos, and content work without JavaScript', async () => {
     await page.getByRole('link', { name: 'Paradisium', exact: true }).first().click();
     await page.getByRole('heading', { name: 'Paradisium', exact: true }).waitFor();
     assert.match(await page.locator('a[data-image]').first().getAttribute('href'), /^\/works\/paradisium\/images\//);
+    const experiments = page.locator('.experiments summary');
+    await experiments.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.getByRole('link', { name: 'Field', exact: true }).getAttribute('href'), '/play/');
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('.experiments').getAttribute('open'), null);
   } finally { await context.close(); }
 });
 
@@ -156,6 +163,52 @@ test('navigation fits a narrow mobile screen', async () => {
     await assertFitsViewport(page);
     const wordmark = await page.locator('.wordmark').boundingBox();
     const navigation = await page.locator('nav').boundingBox();
-    assert.ok(wordmark.x + wordmark.width < navigation.x, 'name and navigation overlap');
+    assert.ok(wordmark.x + wordmark.width <= navigation.x || wordmark.y + wordmark.height <= navigation.y, 'name and navigation overlap');
+    await page.locator('.experiments summary').click();
+    await assertFitsViewport(page);
+    await page.getByRole('link', { name: 'Field', exact: true }).click();
+    await page.locator('#field[data-ready="true"]').waitFor();
   } finally { await context.close(); }
 });
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+  test(`Rust WebGL field, ${viewport.width}px: rendering and controls`, async () => {
+    const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    try {
+      await page.goto(base + '/play/');
+      const canvas = page.locator('#field[data-ready="true"]');
+      await canvas.waitFor();
+      await page.waitForFunction(() => document.querySelector('canvas').width === Math.round(innerWidth * Math.min(devicePixelRatio, 2)));
+      await assertFitsViewport(page);
+      assert.equal(await page.locator('#status').textContent(), '');
+      const wasm = await page.request.get(base + '/play/wasm/field_bg.wasm');
+      assert.equal(wasm.status(), 200);
+      assert.match(wasm.headers()['content-type'], /application\/wasm/);
+      await page.screenshot({ path: path.join(screenshots, `field-${viewport.width}.png`) });
+      const pixels = async () => createHash('sha256').update(await page.screenshot({ clip: { x: 0, y: 100, width: viewport.width, height: viewport.height - 220 } })).digest('hex');
+      const original = await pixels();
+      await page.getByRole('button', { name: 'Color', exact: true }).click();
+      await page.waitForTimeout(100);
+      assert.notEqual(await pixels(), original, 'Rust palette control must change the rendered pixels');
+      await page.getByRole('button', { name: 'Reset', exact: true }).click();
+      await page.waitForTimeout(100);
+      assert.equal(await pixels(), original, 'Reset must restore the initial scene');
+      await canvas.click({ position: { x: viewport.width / 2, y: viewport.height / 2 } });
+      await page.waitForTimeout(100);
+      assert.notEqual(await pixels(), original, 'Pointer input must change the field');
+      await page.getByRole('button', { name: 'Play', exact: true }).click();
+      assert.equal(await page.locator('#pause').getAttribute('aria-pressed'), 'false');
+      const moving = await pixels();
+      await page.waitForTimeout(250);
+      assert.notEqual(await pixels(), moving, 'Animation must advance');
+      await page.getByRole('button', { name: 'Pause', exact: true }).click();
+      const paused = await pixels();
+      await page.waitForTimeout(150);
+      assert.equal(await pixels(), paused, 'Pause must freeze animation');
+      assert.deepEqual(errors, []);
+    } finally { await context.close(); }
+  });
+}

@@ -97,9 +97,10 @@ def portfolio_site():
 
     copy_to_directory(
         name = "assembled_site",
-        srcs = [":astro_build", ":images", "//resume:pdf"],
+        srcs = [":astro_build", ":images", "//resume:pdf", "//experiments/field:web"],
         out = "assembled_site",
         root_paths = ["astro_site", "processed_images", "resume"],
+        replace_prefixes = {"experiments/field/web/": "play/wasm/"},
         exclude_srcs_patterns = ["astro_cache/**", ".astro/**", "**/images.json"],
     )
 
