@@ -11,6 +11,7 @@ export default defineConfig({
   trailingSlash: 'always',
   outDir: './astro_site',
   cacheDir: './astro_cache',
+  build: { inlineStylesheets: 'always' },
   integrations: [react(), sitemap({ filter: page => !page.endsWith('/404/') && !page.endsWith('/404.html') })],
   markdown: { processor: unified({ smartypants: false, remarkPlugins: [projectImagePaths], rehypePlugins: [rehypeRaw, projectMedia] }) },
   // Bind native Vite resolution to the declared output-tree TypeScript config.

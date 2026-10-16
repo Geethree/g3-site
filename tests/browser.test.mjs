@@ -93,7 +93,7 @@ after(async () => {
 
 for (const colorScheme of ['light', 'dark']) {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
-    test(`${colorScheme}, ${viewport.width}px: hydration, navigation, and image viewer`, async () => {
+    test(`${colorScheme}, ${viewport.width}px: rendering, navigation, and image viewer`, async () => {
       const context = await testContext({ colorScheme, reducedMotion: 'reduce', viewport });
       const page = await context.newPage();
       page.setDefaultTimeout(8000);
@@ -180,6 +180,12 @@ test('navigation, photos, and content work without JavaScript', async () => {
     await page.goto(base + '/');
     await page.getByRole('heading', { name: 'Gerald Spencer', exact: true }).waitFor();
     assert.deepEqual(await page.locator('.featured-grid .work-image').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['/works/paradisium/', '/works/abduction/', '/works/the_folly/']);
+    const fallbackRatios = await page.locator('.featured-grid picture').evaluateAll(pictures => pictures.map(picture => {
+      const { width, height } = picture.getBoundingClientRect();
+      return width / height;
+    }));
+    assert.ok(Math.abs(fallbackRatios[0] - 1.85) < 0.01);
+    assert.ok(fallbackRatios.slice(1).every(ratio => Math.abs(ratio - 1.5) < 0.01));
     await page.getByRole('link', { name: 'Works', exact: true }).first().click();
     assert.equal(await page.locator('.work-card').count(), 11);
     await page.getByRole('link', { name: 'Paradisium', exact: true }).first().click();
@@ -194,7 +200,7 @@ test('navigation, photos, and content work without JavaScript', async () => {
   } finally { await context.close(); }
 });
 
-test('homepage rotates three unique projects on reload without hydration errors', async () => {
+test('homepage rotates three unique projects on reload without errors', async () => {
   const context = await testContext();
   const page = await context.newPage();
   const errors = [];
@@ -233,6 +239,42 @@ test('homepage selection works when browser storage is unavailable', async () =>
     await page.locator('.featured-grid[data-rotated="true"]').waitFor();
     assert.equal(await page.locator('.featured-grid .work-card').count(), 3);
     assert.deepEqual(errors, []);
+  } finally { await context.close(); }
+});
+
+test('mobile homepage keeps cards stable and loads only selected photos without React', async () => {
+  const context = await testContext({ viewport: { width: 412, height: 823 }, deviceScaleFactor: 1.75 });
+  await context.addInitScript(() => {
+    window.layoutShiftScore = 0;
+    new PerformanceObserver(list => {
+      for (const entry of list.getEntries()) {
+        if (!entry.hadRecentInput) window.layoutShiftScore += entry.value;
+      }
+    }).observe({ type: 'layout-shift', buffered: true });
+  });
+  const page = await context.newPage();
+  const requests = [];
+  page.on('request', request => requests.push(request.url()));
+  try {
+    await page.goto(base + '/');
+    await page.locator('.featured-grid[data-rotated="true"]').waitFor();
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator('.featured-grid img').first().evaluate(image => image.decode());
+    await page.waitForTimeout(300);
+    assert.ok(await page.evaluate(() => window.layoutShiftScore < 0.05), 'loading must not shift the project cards');
+    assert.equal(await page.locator('astro-island').count(), 0);
+    assert.ok(!requests.some(url => /\/(?:client|react|jsx-runtime)\.[^/]+\.js/.test(url)), 'homepage must not load React');
+    const selected = await page.locator('.featured-grid .work-image').evaluateAll(links => links.map(link => link.pathname));
+    const photos = requests.filter(url => url.includes('/media/works/'));
+    assert.ok(photos.length > 0);
+    assert.ok(photos.every(url => selected.some(project => url.includes('/media' + project))), 'unselected photos must stay unloaded');
+    const firstImage = await page.locator('.featured-grid img').first().evaluate(image => ({ width: image.getBoundingClientRect().width, height: image.getBoundingClientRect().height, src: image.currentSrc, intrinsicWidth: Number(image.getAttribute('width')), intrinsicHeight: Number(image.getAttribute('height')) }));
+    assert.ok(Math.abs(firstImage.width / firstImage.height - 1.5) < 0.01);
+    const cropScale = Math.max(1, firstImage.intrinsicWidth / firstImage.intrinsicHeight / 1.5);
+    const requiredWidth = Math.min(1920, firstImage.intrinsicWidth, firstImage.width * 1.75 * cropScale);
+    const sourceWidth = Number(firstImage.src.match(/-(\d+)\.webp$/)[1]);
+    assert.ok(sourceWidth >= requiredWidth, 'the photo must have enough detail after cropping');
+    if (cropScale < 1.01) assert.ok(sourceWidth <= 768, 'mobile should choose the closest image size');
   } finally { await context.close(); }
 });
 
