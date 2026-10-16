@@ -14,11 +14,11 @@ for (const image of images) {
   const width = metadata.autoOrient?.width || metadata.width;
   const height = metadata.autoOrient?.height || metadata.height;
   const variants = [];
-  for (const size of [...new Set([640, 960, 1440, 1920].map(size => Math.min(size, width)))]) {
+  for (const size of [...new Set([400, 640, 768, 960, 1200, 1440, 1920].map(size => Math.min(size, width)))]) {
     const url = `/media/${image.url.slice(1).replace(/\.[^.]+$/, '')}-${size}.webp`;
     const destination = path.join(output, url.slice(1));
     await mkdir(path.dirname(destination), { recursive: true });
-    await sharp(image.source).rotate().resize({ width: size, withoutEnlargement: true }).webp({ quality: 82 }).toFile(destination);
+    await sharp(image.source).rotate().resize({ width: size, withoutEnlargement: true }).webp({ quality: 78 }).toFile(destination);
     variants.push({ url, width: size });
   }
   manifest[image.url] = { src: image.url, width, height, variants };

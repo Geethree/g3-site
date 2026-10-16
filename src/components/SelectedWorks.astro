@@ -1,0 +1,14 @@
+---
+import type { Project } from '../types';
+import WorkCard from './WorkCard';
+import { cardImageSizes } from '../lib/image-sizes';
+import selectWorks from '../lib/selected-works.js?raw';
+
+interface Props { projects: Project[]; featured: Project[] }
+const { projects, featured } = Astro.props;
+---
+<div class="featured-grid"></div>
+<noscript><div class="featured-grid">{featured.map((project, index) => <WorkCard project={project} priority={index === 0} wide={index === 0} />)}</div></noscript>
+{projects.map(project => project.cover && <template data-work={project.slug} data-wide-sizes={cardImageSizes(project.cover, true)}><WorkCard project={project} /></template>)}
+<!-- Run during parsing so only the selected photos load, before the first paint. -->
+<script is:inline set:html={selectWorks} />

@@ -39,9 +39,12 @@ test('all current pages, image variants, metadata, and links exist', async () =>
   const expectedPages = ['index.html', 'about/index.html', 'works/index.html', 'play/index.html', 'experiments/flocking/index.html', '404.html', ...projects.map(slug => `works/${slug}/index.html`)];
   assert.deepEqual(Object.keys(manifest.files).filter(file => file.endsWith('.html')).sort(), expectedPages.sort());
   const home = await readFile('site_dist/index.html', 'utf8');
-  assert.deepEqual([...home.matchAll(/<a href="(\/works\/[^\"]+\/)" class="work-image"/g)].map(match => match[1]), ['/works/paradisium/', '/works/abduction/', '/works/the_folly/']);
+  const fallback = home.match(/<noscript>([\s\S]*?)<\/noscript>/)[1];
+  assert.deepEqual([...fallback.matchAll(/<a href="(\/works\/[^\"]+\/)" class="work-image"/g)].map(match => match[1]), ['/works/paradisium/', '/works/abduction/', '/works/the_folly/']);
   assert.match(home, /fetchpriority="high"/i);
-  assert.equal((home.match(/<astro-island\s/g) || []).length, 1);
+  assert.doesNotMatch(home, /<astro-island\s/);
+  assert.doesNotMatch(home, /<link[^>]+rel="stylesheet"/);
+  assert.equal((home.match(/as="font"/g) || []).length, 2);
   assert.doesNotMatch(await readFile('site_dist/about/index.html', 'utf8'), /<astro-island\s/);
   assert.doesNotMatch(await readFile('site_dist/works/index.html', 'utf8'), /<astro-island\s/);
   const sitemap = await readFile('site_dist/sitemap-0.xml', 'utf8');

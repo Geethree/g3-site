@@ -110,7 +110,7 @@ def portfolio_site():
 
     ts_project(
         name = "react_typecheck",
-        srcs = native.glob(["src/components/*.tsx"]) + ["src/types.ts", "src/site.ts"],
+        srcs = native.glob(["src/components/*.tsx"]) + ["src/types.ts", "src/site.ts", "src/lib/image-sizes.ts"],
         tsconfig = {
             "compilerOptions": {
                 "target": "ES2022",

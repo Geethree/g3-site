@@ -1,6 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SelectedWorks from '../components/SelectedWorks';
+import SelectedWorks from '../components/SelectedWorks.astro';
 import { identity } from '../site';
 import { getProjects, getFeaturedProjects } from '../lib/projects';
 
@@ -17,6 +17,6 @@ const featured = await getFeaturedProjects();
   </section>
   <section aria-labelledby="selected-heading" class="selected-work">
     <div class="section-heading"><h2 id="selected-heading">Selected works</h2><a href="/works/">All works <span aria-hidden="true">↗</span></a></div>
-    <SelectedWorks projects={projects} featured={featured} client:load />
+    <SelectedWorks projects={projects} featured={featured} />
   </section>
 </SiteLayout>

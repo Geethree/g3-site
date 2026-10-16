@@ -4,6 +4,8 @@ import WebAnalytics from '../components/WebAnalytics.astro';
 import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
 import '@fontsource/inter/latin-600.css';
+import regularFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import mediumFont from '@fontsource/inter/files/inter-latin-500-normal.woff2?url';
 import '../styles/site.css';
 
 interface Props {
@@ -32,6 +34,8 @@ const isHome = Astro.url.pathname === '/';
     {cover && <meta property="og:image" content={new URL(cover, Astro.site)} />}
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/g3.ico" />
+    <link rel="preload" href={regularFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={mediumFont} as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
